@@ -59,21 +59,39 @@ As a minimum viable product, Art Flight must:
 
 ### Styling
 
-The website will need to simple yet bold, using large blocks with standard colours. This is so it appeals to as large of a userbase as possible. The website will also use borders with no softneing/radius to resemble a picture frame.
+The website will need to simple yet bold, using large blocks with simple standard colours. This is so it appeals to as large of a userbase as possible. Yet to also give it some uniqueness, the website will also use light brown borders with no softneing/radius to resemble a picture frame. Hovering over standard buttons (e.g.: links) will invert the colours of the brown-bordered button, hovering over buttons that delete or remove data will be red, and hovering over buttons that will add data/purchase related will be a yellow/gold colour.
 
 ### Colour
 
-The background to the whole website will be a slightly darker shade of white, this is to keep it looking like a standard website without being bright enough to strain the user's eyes.
+The background to the whole website will be a off-shade of white, this is to keep it looking like a standard website without being bright enough to strain the user's eyes.
 
 Borders will be a light brown to resemble a picture frame, witht he light brown being two different shades of brown to keep it interesting. The souble colour border will be a class, split top/right and bottom/left borders for their respective colours.
 
+Standard buttons will be standard white with a brown border and text. This is to keep them within style of the rest of website and inform the user that the button neither deletes or adds data. Buttons relating to deleting or removing data will be red, this is due to red being the common warning of danger which we will take advantage off. Finally, buttons related to purchasing will be yellow-gold in colour, this is because yellow is not only usually related to happiness in colour theory, but it also resembles coin currency.
+
 ### Typography
+
+Headers and titles throughout the wite will use Nokora at weight 700.
+
+Regualr text throughout the site will use Roboto font at weight 400.
 
 ## Wireframes and logic
 
 ### Wireframe
 
-### Databse logic
+List of all pages needed:
+
+Home
+
+Login
+
+Basket
+
+Checkout
+
+### Database logic
+
+![Database logic chart](readme_assets/wireframe_and_logic/database_logic.png)
 
 ## Bugs and testing
 
@@ -104,5 +122,11 @@ Borders will be a light brown to resemble a picture frame, witht he light brown 
 ### Languages
 
 ### Code, media, frameworks, libraries, and programs used
+
+* [lucid](https://lucid.app/) for creating the database logic chart
+* Google fonts for the fonts in the website:
+
+    * [Nokora for titles](https://fonts.google.com/specimen/Nokora?preview.size=34&categoryFilters=Feeling:%2FExpressive%2FCalm&preview.text=Lorem%20ipsum%20dolor%20sit%20amet,%20consectetur%20adipiscing%20elit.%20Morbi%20sed%20lectus%20turpis.%20Sed%20ut%20nisl%20ac%20felis%20pellentesque%20aliquet.%20Proin%20eget%20ultrices%20lacus.%20Proin%20ac%20elit%20est.%20Donec%20non%20viverra%20magna.%20Vestibulum%20eget%20egestas%20nisl,%20at%20auctor%20nibh.%20Maecenas%20dapibus%20vel%20eros%20et%20ornare.%20)
+    * [Roboto for general text](https://fonts.google.com/specimen/Roboto?preview.size=12&categoryFilters=Feeling:%2FExpressive%2FBusiness&preview.text=Lorem%20ipsum%20dolor%20sit%20amet,%20consectetur%20adipiscing%20elit.%20Morbi%20sed%20lectus%20turpis.%20Sed%20ut%20nisl%20ac%20felis%20pellentesque%20aliquet.%20Proin%20eget%20ultrices%20lacus.%20Proin%20ac%20elit%20est.%20Donec%20non%20viverra%20magna.%20Vestibulum%20eget%20egestas%20nisl,%20at%20auctor%20nibh.%20Maecenas%20dapibus%20vel%20eros%20et%20ornare.%20)
 
 ### Thanks and acknowledgements
