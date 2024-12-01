@@ -81,13 +81,7 @@ Regualr text throughout the site will use Roboto font at weight 400.
 
 List of all pages needed:
 
-Home
-
-Login
-
-Basket
-
-Checkout
+![Wireframes](readme_assets/wireframe_and_logic/wireframes_project_4.png)
 
 ### Database logic
 
