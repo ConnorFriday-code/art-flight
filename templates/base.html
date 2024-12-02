@@ -17,7 +17,17 @@
     <!-- CSS -->
 
     {% block corecss %}
-        <link rel="stylesheet" href="" type="text/css">
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="" type="text/css">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+
     {% endblock %}
 
     {% block extra_css %}
@@ -37,7 +47,63 @@
 </head>
 <body>
 
-    <header>
+    <!-- Header -->
+
+    <header id="header">
+
+        <!-- Header large screens -->
+
+        <div id="header-large">
+            <div id="header-top">
+                <div>
+                    <p>logo</p>
+                    <h1>
+                        <a href="{% url 'home' %}">Art Flight</a>
+                    </h1>
+                </div>
+
+                <!-- account links -->
+
+                <div>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <a href="">Site Management</a>
+                        {% endif %}
+                        <a href="">My Profile</a>
+                        <a href="{% url 'account_logout' %}">Logout</a>
+                    {% else %}
+                        <a href="{% url 'account_signup' %}">Sign-up</a>
+                        <a href="{% url 'account_login' %}">Login</a>
+                    {% endif %}
+                </div>
+
+                <!-- Checkout -->
+
+                <a class="{% if grand_total %}{% else %} {% endif %}" href="">
+                    <div>
+                        <p><i class="fa fa-shopping-basket" aria-hidden="true"></i></p>
+                        <p>
+                            {% if grand_total %}
+                                £{{ grand_total|floatformat:2 }}
+                            {% else %}
+                                £0.00
+                            {% endif %}
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div id="header-bottom">
+                <table>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Header mobile screens -->
+        <div id="header-mobile">
+        </div>
     </header>
 
     {% if messages %}
@@ -49,6 +115,16 @@
 
     {% block content %}
     {% endblock %}
+
+    <footer id="footer">
+        <div>Copyright blurb</div>
+        <div>
+            <h4>Links</h4>
+            <ul>
+                <li><a href="{% url 'home' %}">home</a></li>
+            </ul>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     {% endblock %}
