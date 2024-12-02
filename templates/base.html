@@ -28,6 +28,9 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 
+    <!-- custom css -->
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -55,7 +58,7 @@
 
         <div id="header-large">
             <div id="header-top">
-                <div>
+                <div id="branding">
                     <p>logo</p>
                     <h1>
                         <a href="{% url 'home' %}">Art Flight</a>
@@ -64,13 +67,24 @@
 
                 <!-- account links -->
 
-                <div>
+                <div id="login-div">
+
+                    <!-- if user has an account -->
+
                     {% if request.user.is_authenticated %}
+
+                        <!-- if user is a superuser then add extra admin link-->
+
                         {% if request.user.is_superuser %}
                             <a href="">Site Management</a>
                         {% endif %}
+
+                        <!-- Load option to view profile/logout -->
+
                         <a href="">My Profile</a>
                         <a href="{% url 'account_logout' %}">Logout</a>
+
+                    <!-- if not then offer to login/signup -->
                     {% else %}
                         <a href="{% url 'account_signup' %}">Sign-up</a>
                         <a href="{% url 'account_login' %}">Login</a>
@@ -79,7 +93,7 @@
 
                 <!-- Checkout -->
 
-                <a class="{% if grand_total %}{% else %} {% endif %}" href="">
+                <a id="checkout-link" class="{% if grand_total %}{% else %} {% endif %}" href="">
                     <div>
                         <p><i class="fa fa-shopping-basket" aria-hidden="true"></i></p>
                         <p>

@@ -1,0 +1,33 @@
+body{
+    background-color: #e9e9e9;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+/* -------------------------------------------- header */
+
+#header-large{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+}
+
+#header-top{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#branding{
+    width: 75%;
+}
+
+#login-div{
+    width: 15%;
+}
+
+#checkout-link{
+    width: 10%;
+}
