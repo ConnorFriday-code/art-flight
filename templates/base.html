@@ -22,6 +22,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lacquer&family=Nokora:wght@100;300;400;700;900&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="" type="text/css">
 
     <!-- Font Awesome -->
@@ -56,12 +57,12 @@
 
         <!-- Header large screens -->
 
-        <div id="header-large">
+        <div id="header-large" class="header border">
             <div id="header-top">
                 <div id="branding">
                     <p>logo</p>
                     <h1>
-                        <a href="{% url 'home' %}">Art Flight</a>
+                        <a href="{% url 'home' %}" class="title">ART FLIGHT</a>
                     </h1>
                 </div>
 
@@ -107,11 +108,21 @@
                 </a>
             </div>
             <div id="header-bottom">
-                <table>
-                    <tr>
-                        <th></th>
-                    </tr>
-                </table>
+                <div id="filter-container">
+                    <a href="" class="filter">Digital Art</a>
+                    <a href="" class="filter">Physical Art</a>
+                    <a href="" class="filter">Items</a>
+                </div>
+                <div id="search-nav">
+                    <form method="GET" action="" class="border">
+                        <input type="text" name="q" placeholder="Search our site">
+                        <button type="submit">
+                            <span>
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -131,10 +142,12 @@
     {% endblock %}
 
     <footer id="footer">
-        <div>Copyright blurb</div>
-        <div>
+        <div class="margin footer-div">
+            Copyright blurb
+        </div>
+        <div class="margin footer-div">
             <h4>Links</h4>
-            <ul>
+            <ul id="footer-links">
                 <li><a href="{% url 'home' %}">home</a></li>
             </ul>
         </div>
