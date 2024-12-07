@@ -92,12 +92,35 @@ body{
     justify-content: space-evenly;
 }
 
-#filter-container a{
+.menu-drop{
     margin: auto;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
 }
 
-.filter:hover{
+.menu-drop:hover,
+.nav-dropdown td:hover{
     text-decoration: underline 5px solid #6b5e49;
+}
+
+.nav-dropdown{
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    display: none;
+    border: 0;
+    border-spacing: 0;
+}
+
+.nav-dropdown tr td{
+    background-color: #0c0c0c;
+    padding: 15px;
+    border-spacing: 0;
+}
+
+.menu-drop:hover .nav-dropdown{
+    display: block;
 }
 
 #search-nav{
@@ -211,7 +234,7 @@ body{
         padding: 5px;
     }
 
-    #filter-container a{
+    #filter-container p{
         padding: 0 3px;
     }
 

@@ -55,7 +55,7 @@
 
     <header id="header">
 
-        <!-- Header large screens -->
+        <!-- Header screens -->
 
         <div id="header-large" class="header border">
             <div id="header-top">
@@ -109,9 +109,30 @@
             </div>
             <div id="header-bottom">
                 <div id="filter-container">
-                    <a href="" class="filter">Digital Art</a>
-                    <a href="" class="filter">Physical Art</a>
-                    <a href="" class="filter">Items</a>
+                    <div class="menu-drop">
+                        <p class="filter">Digital Art</p>
+                        <table class="nav-dropdown">
+                            <Tr><td><a href="">Sketch</a></td></Tr>
+                            <Tr><td><a href="">Flat</a></td></Tr>
+                            <Tr><td><a href="">Shaded</a></td></Tr>
+                        </table>
+                    </div>
+                    <div class="menu-drop">
+                        <p class="filter">Physical Art</p>
+                        <table class="nav-dropdown">
+                            <Tr><td><a href="">Drawing</a></td></Tr>
+                            <Tr><td><a href="">Painting</a></td></Tr>
+                            <Tr><td><a href="">Oil</a></td></Tr>
+                        </table>
+                    </div>
+                    <div class="menu-drop">
+                        <p class="filter">Items</p>
+                        <table class="nav-dropdown">
+                            <Tr></Tr><td><a href="">CD</a></td></Tr>
+                            <Tr></Tr><td><a href="">Pins</a></td></Tr>
+                            <Tr></Tr><td><a href="">Miscellaneous</a></td></Tr>
+                        </table>
+                    </div>
                 </div>
                 <div id="search-nav">
                     <form method="GET" action="" class="border">
@@ -124,10 +145,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-
-        <!-- Header mobile screens -->
-        <div id="header-mobile">
         </div>
     </header>
 

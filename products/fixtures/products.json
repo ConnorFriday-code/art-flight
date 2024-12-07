@@ -1,0 +1,128 @@
+[
+    {
+        "model": "artists.artist",
+        "pk": 1,
+        "fields": {
+            "sku": "0001",
+            "artist_name": "Pinny Pins",
+            "description": "I can make really calls button pins for you and your friends.",
+            "dos": "Cartoon style",
+            "donts": "Evil cats >:(",
+            "image": "",
+            "price": 40.00,
+            "tag": "Pin"
+        }
+    },
+    {
+        "model": "artists.artist",
+        "pk": 2,
+        "fields": {
+            "sku": "0002",
+            "artist_name": "Sir Pencil",
+            "description": "A stunning landscape captured in oil paints.",
+            "dos": "Frame it for best results.",
+            "donts": "Avoid touching the painted surface directly.",
+            "image": "",
+            "price": 80.00,
+            "tag": "Oil"
+        }
+    },
+    {
+        "model": "artists.artist",
+        "pk": 3,
+        "fields": {
+            "sku": "0003",
+            "artist_name": "Lord Pen",
+            "description": "A master of pen-like style of drawings!",
+            "dos": "Cartoons.",
+            "donts": "real life people.",
+            "image": "",
+            "price": 120.00,
+            "tag": "Sketch"
+        }
+    },
+    {
+        "model": "artists.artist",
+        "pk": 4,
+        "fields": {
+            "sku": "0004",
+            "artist_name": "Mugger of Mugs",
+            "description": "Great mugs for sale, just don't ask where I get them from.",
+            "dos": "Anything.",
+            "donts": "Anything law related.",
+            "image": "",
+            "price": 20.00,
+            "tag": "Miscellaneous"
+        }
+    },
+    {
+        "model": "artists.artist",
+        "pk": 5,
+        "fields": {
+            "sku": "0005",
+            "artist_name": "The Flat Painter",
+            "description": "Modern sculpture made from recycled materials.",
+            "dos": "Squares",
+            "donts": "Circles",
+            "image": "",
+            "price": 75.00,
+            "tag": "Flat"
+        }
+    },
+    {
+        "model": "artists.artist",
+        "pk": 6,
+        "fields": {
+            "sku": "0006",
+            "artist_name": "Shady Figure",
+            "description": "Modern sculpture made from recycled materials.",
+            "dos": "Display indoors for longevity.",
+            "donts": "Cartoon style of drawings.",
+            "image": "",
+            "price": 300.00,
+            "tag": "Shaded"
+        }
+    },
+    {
+        "model": "artists.artist",
+        "pk": 7,
+        "fields": {
+            "sku": "0007",
+            "artist_name": "Painting Pinter",
+            "description": "I love my pubs! And I want to turn every one I see into a painting!",
+            "dos": "Pubs, brewerys... and other builds I guess.",
+            "donts": "Anything to do with giraffes, don't ask.",
+            "image": "",
+            "price": 10.00,
+            "tag": "Paint"
+        }
+    },
+    {
+        "model": "artists.artist",
+        "pk": 8,
+        "fields": {
+            "sku": "0008",
+            "artist_name": "Super CD",
+            "description": "I'm able to make CDs in record time!",
+            "dos": "Putting all your favourite music onto a disk.",
+            "donts": "DVDs. Stop asking me that.",
+            "image": "",
+            "price": 1200.00,
+            "tag": "CD"
+        }
+    },
+    {
+        "model": "artists.artist",
+        "pk": 9,
+        "fields": {
+            "sku": "0009",
+            "artist_name": "Doodle Dan",
+            "description": "Able to make pages filled with whatever doodles you like! Great for backgrounds!",
+            "dos": "Silly. Realistic abstract. Realistic.",
+            "donts": "High detail drawings.",
+            "image": "",
+            "price": 60.00,
+            "tag": "Drawing"
+        }
+    }
+]
