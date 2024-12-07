@@ -189,6 +189,10 @@ body{
         font-size: 28px;
     }
 
+    #login-div a{
+        font-size: 16px;
+    }
+
 
     #header-bottom{
         flex-direction: column;
