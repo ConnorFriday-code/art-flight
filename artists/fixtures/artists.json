@@ -10,7 +10,7 @@
             "donts": "Evil cats >:(",
             "image": "",
             "price": 40.00,
-            "tag": "Pin"
+            "tag": "8"
         }
     },
     {
@@ -24,7 +24,7 @@
             "donts": "Avoid touching the painted surface directly.",
             "image": "",
             "price": 80.00,
-            "tag": "Oil"
+            "tag": "6"
         }
     },
     {
@@ -38,7 +38,7 @@
             "donts": "real life people.",
             "image": "",
             "price": 120.00,
-            "tag": "Sketch"
+            "tag": "1"
         }
     },
     {
@@ -52,7 +52,7 @@
             "donts": "Anything law related.",
             "image": "",
             "price": 20.00,
-            "tag": "Miscellaneous"
+            "tag": "9"
         }
     },
     {
@@ -66,7 +66,7 @@
             "donts": "Circles",
             "image": "",
             "price": 75.00,
-            "tag": "Flat"
+            "tag": "2"
         }
     },
     {
@@ -80,7 +80,7 @@
             "donts": "Cartoon style of drawings.",
             "image": "",
             "price": 300.00,
-            "tag": "Shaded"
+            "tag": "3"
         }
     },
     {
@@ -94,7 +94,7 @@
             "donts": "Anything to do with giraffes, don't ask.",
             "image": "",
             "price": 10.00,
-            "tag": "Paint"
+            "tag": "5"
         }
     },
     {
@@ -108,7 +108,7 @@
             "donts": "DVDs. Stop asking me that.",
             "image": "",
             "price": 1200.00,
-            "tag": "CD"
+            "tag": "7"
         }
     },
     {
@@ -122,7 +122,7 @@
             "donts": "High detail drawings.",
             "image": "",
             "price": 60.00,
-            "tag": "Drawing"
+            "tag": "4"
         }
     }
 ]

@@ -1,7 +1,7 @@
 [
     {
         "pk": 1,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "Sketch",
           "friendly_name": "Sketch"
@@ -9,7 +9,7 @@
       },
       {
         "pk": 2,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "Flat",
           "friendly_name": "Flat"
@@ -17,7 +17,7 @@
       },
       {
         "pk": 3,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "Shaded",
           "friendly_name": "Shaded"
@@ -25,7 +25,7 @@
       },
       {
         "pk": 4,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "Drawing",
           "friendly_name": "Drawing"
@@ -33,7 +33,7 @@
       },
       {
         "pk": 5,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "Painting",
           "friendly_name": "Painting"
@@ -41,7 +41,7 @@
       },
       {
         "pk": 6,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "Oil",
           "friendly_name": "Oil"
@@ -49,7 +49,7 @@
       },
       {
         "pk": 7,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "CD",
           "friendly_name": "CD"
@@ -57,7 +57,7 @@
       },
       {
         "pk": 8,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "Pins",
           "friendly_name": "Pins"
@@ -65,7 +65,7 @@
       },
       {
         "pk": 9,
-        "model": "artists.tag",
+        "model": "artists.Tag",
         "fields": {
           "name": "Misc",
           "friendly_name": "Miscellaneous"
