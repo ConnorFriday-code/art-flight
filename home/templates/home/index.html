@@ -2,5 +2,14 @@
 {% load static %}
 
 {% block content %}
-    <h1>It works!</h1>
+    <div class="plate border">
+        <div>
+            <h2 class="title">Welcome To Art Flight</h2>
+            <p>Where we make your art career soar high!</p>
+        </div>
+        <div>
+            <a href="{% url 'artists' %}" class="border"><div><h2 class="title">Shop Now</h2></div></a>
+            <img src="" alt="Site Logo">
+        </div>
+    </div>
 {% endblock %}

@@ -31,6 +31,21 @@ body{
     margin: 15px 10px;
 }
 
+#content{
+    flex:1;
+}
+
+.plate{
+    width: 70%;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.plate a{
+    color: #1a1a1a;;
+}
+
 /* -------------------------------------------- header */
 
 .header{
@@ -188,7 +203,7 @@ body{
     color: #e9e9e9;
     display: flex;
     flex-direction: row;
-    position: absolute;
+    
     right: 0;
     bottom: 0;
     align-items: center;

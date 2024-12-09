@@ -1,6 +1,43 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/artists_list.css' %}">
+{% endblock %}
+
 {% block content %}
-    {{ artists }}
+    <div id="sorting-by-div">
+        <p>Sort by:</p>
+        <a href="">All Artists</a>
+        <a href="">Price</a>
+    </div>
+
+    <div class="border plate">
+        {% for artist in artists %}
+            <div class="card border">
+                <div>
+                    <a href="#"><h2 class="card-title">{{ artist.artist_name }}</h2></a>
+                </div>
+                <div>
+                    {% if artist.image %}
+                    <img src="{{ artist.image}}">
+                    {% else %}
+                    <p>No Image Submitted</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <div>
+                        {{ artist.description }}
+                    </div>
+                    <div>
+                        <div>{{ artist.dos }}</div>
+                        <div>{{ artist.donts }}</div>
+                    </div>
+                    <div>
+                        {{ artist.price }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

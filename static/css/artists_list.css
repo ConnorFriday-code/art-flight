@@ -1,0 +1,15 @@
+.card{
+    display: inline-block;
+    width: 45%;
+    margin: 10px auto;
+    padding: 5px;
+}
+
+.card-title{
+    font-family: "Nokora", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 28px;
+    padding: 4px;
+    margin: 0;
+}
