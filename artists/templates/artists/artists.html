@@ -8,8 +8,9 @@
 {% block content %}
     <div id="sorting-by-div">
         <p>Sort by:</p>
-        <a href="">All Artists</a>
-        <a href="">Price</a>
+        <a href="{% url 'artists' %}{% if tag %}?tag={{tag}}{% endif %}">All Artists</a>
+        <a href="{% url 'artists' %}?{% if tag %}tag={{ tag }}&{% endif %}sort=price_low">Price Low to High</a>
+        <a href="{% url 'artists' %}?{% if tag %}tag={{ tag }}&{% endif %}sort=price_high">Price High to Low</a>
     </div>
 
     <div class="border plate">
@@ -22,16 +23,23 @@
                     {% if artist.image %}
                     <img src="{{ artist.image}}">
                     {% else %}
-                    <p>No Image Submitted</p>
+                    <p><i>No Image Submitted</i></p>
                     {% endif %}
                 </div>
                 <div>
                     <div>
+                        <h3>Description:</h3>
                         {{ artist.description }}
                     </div>
                     <div>
-                        <div>{{ artist.dos }}</div>
-                        <div>{{ artist.donts }}</div>
+                        <div>
+                            <h3>Do:</h3>
+                            {{ artist.dos }}
+                        </div>
+                        <div>
+                            <h3>Won't do:</h3>
+                            {{ artist.donts }}
+                        </div>
                     </div>
                     <div>
                         {{ artist.price }}

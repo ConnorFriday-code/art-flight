@@ -112,25 +112,25 @@
                     <div class="menu-drop">
                         <p class="filter">Digital Art</p>
                         <table class="nav-dropdown">
-                            <Tr><td><a href="">Sketch</a></td></Tr>
-                            <Tr><td><a href="">Flat</a></td></Tr>
-                            <Tr><td><a href="">Shaded</a></td></Tr>
+                            <Tr><td><a href="{% url 'artists' %}?tag=Sketch">Sketch</a></td></Tr>
+                            <Tr><td><a href="{% url 'artists' %}?tag=Flat">Flat</a></td></Tr>
+                            <Tr><td><a href="{% url 'artists' %}?tag=Shaded">Shaded</a></td></Tr>
                         </table>
                     </div>
                     <div class="menu-drop">
                         <p class="filter">Physical Art</p>
                         <table class="nav-dropdown">
-                            <Tr><td><a href="">Drawing</a></td></Tr>
-                            <Tr><td><a href="">Painting</a></td></Tr>
-                            <Tr><td><a href="">Oil</a></td></Tr>
+                            <Tr><td><a href="{% url 'artists' %}?tag=Drawing">Drawing</a></td></Tr>
+                            <Tr><td><a href="{% url 'artists' %}?tag=Painting">Painting</a></td></Tr>
+                            <Tr><td><a href="{% url 'artists' %}?tag=Oil">Oil</a></td></Tr>
                         </table>
                     </div>
                     <div class="menu-drop">
                         <p class="filter">Items</p>
                         <table class="nav-dropdown">
-                            <Tr></Tr><td><a href="">CD</a></td></Tr>
-                            <Tr></Tr><td><a href="">Pins</a></td></Tr>
-                            <Tr></Tr><td><a href="">Miscellaneous</a></td></Tr>
+                            <Tr></Tr><td><a href="{% url 'artists' %}?tag=CD">CD</a></td></Tr>
+                            <Tr></Tr><td><a href="{% url 'artists' %}?tag=Pins">Pins</a></td></Tr>
+                            <Tr></Tr><td><a href="{% url 'artists' %}?tag=Misc">Miscellaneous</a></td></Tr>
                         </table>
                     </div>
                 </div>
