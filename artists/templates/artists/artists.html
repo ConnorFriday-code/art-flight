@@ -8,7 +8,8 @@
 {% block content %}
     <div id="sorting-by-div">
         <p>Sort by:</p>
-        <a href="{% url 'artists' %}{% if tag %}?tag={{tag}}{% endif %}">All Artists</a>
+        <a href="{% url 'artists' %}">All Artists</a>
+        <a href="{% url 'artists' %}{% if tag %}?tag={{tag}}{% endif %}">Default</a>
         <a href="{% url 'artists' %}?{% if tag %}tag={{ tag }}&{% endif %}sort=price_low">Price Low to High</a>
         <a href="{% url 'artists' %}?{% if tag %}tag={{ tag }}&{% endif %}sort=price_high">Price High to Low</a>
     </div>
@@ -17,7 +18,7 @@
         {% for artist in artists %}
             <div class="card border">
                 <div>
-                    <a href="#"><h2 class="card-title">{{ artist.artist_name }}</h2></a>
+                    <a href="{% url 'artists_details' artist.sku %}"><h2 class="card-title">{{ artist.artist_name }}</h2></a>
                 </div>
                 <div>
                     {% if artist.image %}
@@ -29,20 +30,20 @@
                 <div>
                     <div>
                         <h3>Description:</h3>
-                        {{ artist.description }}
+                        <p>{{ artist.description }}</p>
                     </div>
                     <div>
                         <div>
                             <h3>Do:</h3>
-                            {{ artist.dos }}
+                            <p>{{ artist.dos }}</p>
                         </div>
                         <div>
                             <h3>Won't do:</h3>
-                            {{ artist.donts }}
+                            <p>{{ artist.donts }}</p>
                         </div>
                     </div>
                     <div>
-                        {{ artist.price }}
+                        <p>{{ artist.price }}</p>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Artist
 
 # Create your views here.
@@ -27,3 +27,17 @@ def all_artists(request):
     }
 
     return render(request, 'artists/artists.html', context)
+
+def artists_details(request, sku):
+
+    """ A view to return a specified artist """
+
+    artist = get_object_or_404(Artist, sku=sku)
+    tag = artist.tag.name
+
+    context = {
+        'artist': artist,
+        'tag': tag,
+    }
+
+    return render(request, 'artists/artists_details.html', context)

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/artists_details.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="plate border">
+        <div>
+            {% if artist.image %}
+                <img src="{{ artist.image}}">
+            {% else %}
+                <p><i>No Image Submitted</i></p>
+            {% endif %}
+        </div>
+        <div>
+            <h2 class="">{{ artist.artist_name }}</h2>
+            <h3>Description:</h3>
+            <p>{{ artist.description }}</p>
+        </div>
+        <div>
+            <div>
+                <h3>Do:</h3>
+                <p>{{ artist.dos }}</p>
+            </div>
+            <div>
+                <h3>Won't do:</h3>
+                <p>{{ artist.donts }}</p>
+            </div>
+        </div>
+        <div>
+            <p>{{ artist.price }}</p>
+            <form>
+                {% csrf_token %}
+                {% if tag in "CD,Pins,Misc" %}
+                <p>7-9</p>
+                <select>
+                    <option>Empty</option>
+                </select>
+                {% else %}
+                    <p>1-6</p>
+                    <select>
+                        <option>Empty</option>
+                    </select>
+                {% endif %}
+                <textarea></textarea>
+                <input type="submit">
+            </form>
+        </div>
+{% endblock %}
