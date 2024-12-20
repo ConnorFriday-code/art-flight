@@ -13,3 +13,11 @@
     padding: 4px;
     margin: 0;
 }
+
+#sorry-search{
+    width: 100%;
+}
+
+#sorry-search h2{
+    text-decoration: underline;
+}

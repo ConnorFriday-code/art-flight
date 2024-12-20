@@ -136,7 +136,7 @@
                 </div>
                 <div id="search-nav">
                     <form method="GET" action="" class="border">
-                        <input type="text" name="q" placeholder="Search our site">
+                        <input type="text" name="q" placeholder="Search our site" value="{{search_query|default_if_none:''}}">
                         <button type="submit">
                             <span>
                                 <i class="fa fa-search" aria-hidden="true"></i>

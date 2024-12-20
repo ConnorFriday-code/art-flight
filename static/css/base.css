@@ -46,6 +46,10 @@ body{
     color: #1a1a1a;;
 }
 
+.centre{
+    text-align: center;
+}
+
 /* -------------------------------------------- header */
 
 .header{

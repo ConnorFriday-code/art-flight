@@ -33,18 +33,28 @@
             <p>{{ artist.price }}</p>
             <form>
                 {% csrf_token %}
-                {% if tag in "CD,Pins,Misc" %}
-                <p>7-9</p>
+                {% if tag in "Pins,Misc" %}
+                <p>Choose a colour:</p>
                 <select>
-                    <option>Empty</option>
+                    <option>Bronze</option>
+                    <option>Silver</option>
+                    <option>Gold</option>
+                </select>
+                {% elif tag in "CD" %} 
+                <p>Choose a case:</p>
+                <select>
+                    <option>Plastic</option>
+                    <option>Metal</option>
                 </select>
                 {% else %}
-                    <p>1-6</p>
+                    <p>Choose a media:</p>
                     <select>
-                        <option>Empty</option>
+                        <option>Figure(s)</option>
+                        <option>Landscape</option>
+                        <option>Object(s)</option>
                     </select>
                 {% endif %}
-                <textarea></textarea>
+                <textarea placeholder="Please specify your order here..."></textarea>
                 <input type="submit">
             </form>
         </div>
