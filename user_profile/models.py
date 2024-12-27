@@ -1,25 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Artist(models.Model):
     sku = models.CharField(max_length=10, unique=True)
-    artist_name = models.CharField(max_length=255, editable=False)
-    email = models.EmailField(editable=False)
+    artist_name = models.CharField(max_length=255, blank=True)  # Will be automatically set to the user's name
+    email = models.EmailField(blank=True)  # Hidden, automatically grabbed from the user's profile
     description = models.TextField(blank=True)
     dos = models.TextField(blank=True)
     donts = models.TextField(blank=True)
     image = models.ImageField(upload_to='artist_images/', blank=True, null=True)
-    price_options = models.JSONField(default=dict)
-    slots = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(50)])
+    price = models.JSONField()  # Dictionary for up to 5 options and prices
+    slots = models.IntegerField(default=0)  # Number of open slots
     tag = models.CharField(max_length=50, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='artists')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='artists')  # Tie artist to user
 
     def save(self, *args, **kwargs):
-        """Automatically populate artist_name and email from user on save."""
-        if self.user:
-            self.artist_name = self.user.username
-            self.email = self.user.email
+        if not self.artist_name:
+            self.artist_name = self.user.username  # Automatically set artist name to user's name
+        if not self.email:
+            self.email = self.user.email  # Automatically set email to user's email
         super().save(*args, **kwargs)
 
     def __str__(self):

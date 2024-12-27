@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <form action="POST">
+        {% csrf_token %}
+        <div class="plate border">
+            <div>
+                <h2>New Service Creation</h2>
+                <p>Create a new service to show yourself off, {{ request.user.username }}.</p>
+            </div>
+            <div>
+                <label for="price_keys">Option</label>
+                    {{ form.tag }}
+                <label for="price_keys">Image</label>
+                    {{ form.image }}
+                <h3>Details</h3>
+                <label for="price_keys">Description</label>
+                    {{ form.description }}
+                <label for="price_keys">Available slots</label>
+                    {{ form.slots }}
+            </div>
+            <div>
+                <h3>Preferences</h3>
+                <label>Willing to do:</label>
+                {{form.dos}}
+                <label>Not willing to do:</label>
+                {{form.donts}}
+            </div>
+            <div>
+                <h3>Prices</h3>
+                <div>
+                    <label for="price_keys">Option</label>
+                    {{ form.price_keys }}
+                </div>
+                <div>
+                    <label for="price_values">Price</label>
+                    {{ form.price_values }}
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit">Create!</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
