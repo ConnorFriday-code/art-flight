@@ -1,5 +1,5 @@
 from django import forms
-from .models import Artist
+from .models import Artist, Tag
 
 class CreateService(forms.ModelForm):
     price_keys = forms.CharField(

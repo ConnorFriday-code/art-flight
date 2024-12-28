@@ -3,23 +3,30 @@ from django.contrib.auth.models import User
 
 class Artist(models.Model):
     sku = models.CharField(max_length=10, unique=True)
-    artist_name = models.CharField(max_length=255, blank=True)  # Will be automatically set to the user's name
-    email = models.EmailField(blank=True)  # Hidden, automatically grabbed from the user's profile
+    artist_name = models.CharField(max_length=255, blank=True)
+    email = models.EmailField(blank=True)
     description = models.TextField(blank=True)
     dos = models.TextField(blank=True)
     donts = models.TextField(blank=True)
     image = models.ImageField(upload_to='artist_images/', blank=True, null=True)
-    price = models.JSONField()  # Dictionary for up to 5 options and prices
-    slots = models.IntegerField(default=0)  # Number of open slots
+    price = models.JSONField()
+    slots = models.IntegerField(default=0)
     tag = models.CharField(max_length=50, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='artists')  # Tie artist to user
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='artists')
 
     def save(self, *args, **kwargs):
         if not self.artist_name:
-            self.artist_name = self.user.username  # Automatically set artist name to user's name
+            self.artist_name = self.user.username
         if not self.email:
-            self.email = self.user.email  # Automatically set email to user's email
+            self.email = self.user.email
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.artist_name
+
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True) 
+    friendly_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.friendly_name or self.name

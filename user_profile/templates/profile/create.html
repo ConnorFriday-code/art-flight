@@ -8,7 +8,7 @@
 {% block content %}
 
 <div>
-    <form action="POST">
+    <form method="POST" action="add" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="plate border">
             <div>
@@ -44,9 +44,9 @@
                     {{ form.price_values }}
                 </div>
             </div>
-        </div>
-        <div>
-            <button type="submit">Create!</button>
+            <div>
+                <button type="submit">Create!</button>
+            </div>
         </div>
     </form>
 </div>
