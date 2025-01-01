@@ -11,6 +11,19 @@ class CreateService(forms.ModelForm):
         required=False
     )
 
+    tag = forms.CharField(
+        max_length=50,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control',
+                'id': 'tag-input',
+                'placeholder': 'Type a tag or select from suggestions',
+                'autocomplete': 'off'
+            }
+        ),
+        label="Tag"
+    )
+
     class Meta:
         model = Artist
         fields = ['tag','description','dos','donts', 'slots', 'image']

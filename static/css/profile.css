@@ -2,3 +2,30 @@
     flex-direction: column;
     align-content: center;
 }
+
+.form-options{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    width: 70%;
+}
+.underline{
+    text-decoration: underline;
+}
+
+form div{
+    margin: 5px 0;
+}
+
+label{
+    padding: 5px 0;
+}
+
+.form-title{
+    font-family: "Nokora", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 24px;
+    margin: 25px 0 5px;
+}
