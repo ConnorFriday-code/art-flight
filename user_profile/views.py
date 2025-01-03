@@ -1,7 +1,11 @@
+import os
+import json
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .forms import CreateService
-from .models import Artist, Tag
+from .models import Artist
+from django.shortcuts import render
+from django.conf import settings
 
 # Define the profile view
 @login_required
@@ -23,9 +27,3 @@ def create(request):
 
     # Render the form for both GET requests and invalid POST submissions
     return render(request, 'profile/create.html', {'form': form})
-
-
-def get_tags(request):
-    if request.method == "GET":
-        tags = Tag.objects.all().values('name', 'friendly_name')
-        return JsonResponse(list(tags), safe=False)

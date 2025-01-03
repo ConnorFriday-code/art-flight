@@ -23,10 +23,3 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.artist_name
-
-class Tag(models.Model):
-    name = models.CharField(max_length=50, unique=True) 
-    friendly_name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.friendly_name or self.name

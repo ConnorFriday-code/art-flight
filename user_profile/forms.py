@@ -1,5 +1,5 @@
 from django import forms
-from .models import Artist, Tag
+from .models import Artist
 
 class CreateService(forms.ModelForm):
     price_keys = forms.CharField(
@@ -17,7 +17,7 @@ class CreateService(forms.ModelForm):
             attrs={
                 'class': 'form-control',
                 'id': 'tag-input',
-                'placeholder': 'Type a tag or select from suggestions',
+                'placeholder': 'Type a tag',
                 'autocomplete': 'off'
             }
         ),
