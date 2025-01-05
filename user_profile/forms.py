@@ -36,7 +36,6 @@ class CreateService(forms.ModelForm):
             self.fields['price_values'].initial = "\n".join(map(str, values))
 
     def clean(self):
-        #Combine keys and values
         cleaned_data = super().clean()
         price_keys = cleaned_data.get('price_keys', '').splitlines()
         price_values = cleaned_data.get('price_values', '').splitlines()
@@ -50,3 +49,11 @@ class CreateService(forms.ModelForm):
             raise forms.ValidationError("All price values must be valid numbers.")
 
         return cleaned_data
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        # Assign the cleaned `price` to the model instance
+        instance.price = self.cleaned_data.get('price', {})
+        if commit:
+            instance.save()
+        return instance

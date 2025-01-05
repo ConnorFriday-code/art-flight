@@ -3,6 +3,7 @@
 import django.db.models.deletion
 from django.conf import settings
 from django.db import migrations, models
+import uuid
 
 
 class Migration(migrations.Migration):
@@ -18,14 +19,14 @@ class Migration(migrations.Migration):
             name='Artist',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('sku', models.CharField(max_length=10, unique=True)),
+                ('sku', models.CharField(max_length=10, unique=True, default=uuid.uuid4)),
                 ('artist_name', models.CharField(blank=True, max_length=255)),
                 ('email', models.EmailField(blank=True, max_length=254)),
                 ('description', models.TextField(blank=True)),
                 ('dos', models.TextField(blank=True)),
                 ('donts', models.TextField(blank=True)),
                 ('image', models.ImageField(blank=True, null=True, upload_to='artist_images/')),
-                ('price', models.JSONField()),
+                ('price', models.JSONField(default=dict, null=False, blank=False)),
                 ('slots', models.IntegerField(default=0)),
                 ('tag', models.CharField(blank=True, max_length=50)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='artists', to=settings.AUTH_USER_MODEL)),

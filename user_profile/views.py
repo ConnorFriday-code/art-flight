@@ -1,6 +1,6 @@
 import os
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import CreateService
 from .models import Artist
@@ -21,9 +21,8 @@ def create(request):
             artist_service = form.save(commit=False)
             artist_service.user = request.user
             artist_service.save()
-            return redirect('profile')  # Ensure redirect after successful save
+            return redirect('profile')
     else:
         form = CreateService()
 
-    # Render the form for both GET requests and invalid POST submissions
     return render(request, 'profile/create.html', {'form': form})
