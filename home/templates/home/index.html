@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="plate border">
-        <div>
+        <div id="welcome-message">
+            <img src="" alt="Site Logo">
             <h2 class="title">Welcome To Art Flight</h2>
             <p>Where we make your art career soar high!</p>
-        </div>
-        <div>
-            <a href="{% url 'artists' %}" class="border"><div><h2 class="title">Shop Now</h2></div></a>
-            <img src="" alt="Site Logo">
+            <a href="{% url 'artists' %}" id="shop-now-button" class="border">
+                <h2 class="title">Shop Now</h2>
+            </a>
         </div>
     </div>
 {% endblock %}

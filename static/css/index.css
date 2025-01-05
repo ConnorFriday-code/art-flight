@@ -1,0 +1,20 @@
+#welcome-message{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#shop-now-button{
+    margin: 10px 0;
+    color: #3d2f29;
+}
+
+#shop-now-button:hover{
+    color: #6b5e49;;
+}
+
+#shop-now-button h2{
+    margin: 15px;
+}

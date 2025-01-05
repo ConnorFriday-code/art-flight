@@ -77,7 +77,7 @@
                         <!-- if user is a superuser then add extra admin link-->
 
                         {% if request.user.is_superuser %}
-                            <a href="">Site Management</a>
+                            <a href="/admin/">Site Management</a>
                         {% endif %}
 
                         <!-- Load option to view profile/logout -->
