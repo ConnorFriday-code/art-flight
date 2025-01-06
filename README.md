@@ -93,6 +93,10 @@ List of all pages needed:
 
 ### Bug solving
 
+#### Tag filter bug
+
+When the user inputs/fills out the form to create a service, they fill out a 'tag' input. This tag input is free write due to the fact of wanting the user to have free reign in what they tag their services as. However, the tag that the nav bar/artist page uses is the tag data in the JSON file, and as such, the doesn't naturually filter out tags correctly due to such things as case sensitivity and spaces.
+
 ## Final product
 
 ### Uploading product

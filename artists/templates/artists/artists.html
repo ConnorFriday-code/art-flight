@@ -19,37 +19,36 @@
     <div class="border plate">
         {% if artists %}
         {% for artist in artists %}
-            <div class="card border">
-                <div>
-                    <a href="{% url 'artists_details' artist.sku %}"><h2 class="card-title">{{ artist.artist_name }}</h2></a>
-                </div>
-                <div>
-                    {% if artist.image %}
-                    <img src="{{ artist.image}}">
-                    {% else %}
-                    <p><i>No Image Submitted</i></p>
-                    {% endif %}
-                </div>
+            <a href="{% url 'artists_details' artist.sku %}" class="card border">
                 <div>
                     <div>
-                        <h3>Description:</h3>
-                        <p>{{ artist.description }}</p>
+                        <h2 class="card-title">{{ artist.artist_name }}</h2>
+                    </div>
+                    <div>
+                        {% if artist.image %}
+                        <img src="{{ artist.image}}">
+                        {% else %}
+                        <p><i>No Image Submitted</i></p>
+                        {% endif %}
                     </div>
                     <div>
                         <div>
-                            <h3>Do:</h3>
-                            <p>{{ artist.dos }}</p>
+                            <h3>Description:</h3>
+                            <p>{{ artist.description }}</p>
                         </div>
                         <div>
-                            <h3>Won't do:</h3>
-                            <p>{{ artist.donts }}</p>
+                            <div>
+                                <h3>Do:</h3>
+                                <p>{{ artist.dos }}</p>
+                            </div>
+                            <div>
+                                <h3>Won't do:</h3>
+                                <p>{{ artist.donts }}</p>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <p>{{ artist.price }}</p>
-                    </div>
                 </div>
-            </div>
+            </a>
         {% endfor %}
         {% else %}
         <div id="sorry-search" class="centre">

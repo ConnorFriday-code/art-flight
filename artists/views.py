@@ -1,9 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
-from .models import Artist
 from django.http import JsonResponse
+from user_profile.models import Artist
 
 # Create your views here.
+
+def artist(request):
+    artists = Artist.objects.all()
+
+    context = {'artists': artists}
+    
+    return render(request, 'artists/artists.html', context)
 
 def all_artists(request):
 
@@ -16,7 +23,7 @@ def all_artists(request):
     artists = Artist.objects.all()
 
     if tag_filter:
-        artists = artists.filter(tag__name=tag_filter)
+        artists = artists.filter(tag=tag_filter)
     
     if search_query:
         artists =artists.filter(

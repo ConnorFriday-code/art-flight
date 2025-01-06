@@ -1,20 +1,7 @@
 from django.contrib import admin
-from .models import Artist, Tag
+from .models import Tag
 
 # Register your models here.
-
-class ArtistAdmin(admin.ModelAdmin):
-    list_display=(
-        'artist_name',
-        'sku',
-        'tag',
-        'description',
-        'price',
-        'image',
-        'dos',
-        'donts',
-    )
-    ordering=('sku',)
 
 class TagAdmin(admin.ModelAdmin):
     list_display = (
@@ -22,5 +9,4 @@ class TagAdmin(admin.ModelAdmin):
         'name',
     )
 
-admin.site.register(Artist, ArtistAdmin)
 admin.site.register(Tag, TagAdmin)
