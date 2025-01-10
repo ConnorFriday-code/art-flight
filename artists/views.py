@@ -83,10 +83,12 @@ def artists_details(request, sku):
 
     artist = get_object_or_404(Artist, sku=sku)
     tag = artist.tag
+    price = artist.price
 
     context = {
         'artist': artist,
         'tag': tag,
+        'price': price,
     }
 
     return render(request, 'artists/artists_details.html', context)
