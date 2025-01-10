@@ -1,3 +1,6 @@
+The updated view for displaying artists:
+
+~~~
 import json
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
@@ -76,17 +79,4 @@ def all_artists(request):
     }
 
     return render(request, 'artists/artists.html', context)
-
-def artists_details(request, sku):
-
-    """ A view to return a specified artist """
-
-    artist = get_object_or_404(Artist, sku=sku)
-    tag = artist.tag
-
-    context = {
-        'artist': artist,
-        'tag': tag,
-    }
-
-    return render(request, 'artists/artists_details.html', context)
+~~~

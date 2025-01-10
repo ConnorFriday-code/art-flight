@@ -95,7 +95,29 @@ List of all pages needed:
 
 #### Tag filter bug
 
-When the user inputs/fills out the form to create a service, they fill out a 'tag' input. This tag input is free write due to the fact of wanting the user to have free reign in what they tag their services as. However, the tag that the nav bar/artist page uses is the tag data in the JSON file, and as such, the doesn't naturually filter out tags correctly due to such things as case sensitivity and spaces.
+When the user inputs/fills out the form to create a service, they fill out a 'tag' input. This tag input is free write due to the fact of wanting the user to have free reign in what they tag their services as. However, the tags that the nav bar/artist page uses is the data in the JSON file, and as such, the doesn't naturually filter out tags correctly due to such things as case sensitivity and spaces.
+
+Artist test appearing:
+
+![Artist test appearing](readme_assets/bug_solving/bug-solving-2.png)
+
+Artist test not appearing when I search via the navbar tag 'sketch':
+
+![Artist test no appearing when I search for sketch](readme_assets/bug_solving/bug-solving-3.png)
+
+![Tags with capitals](readme_assets/bug_solving/bug-solving-1.png)
+
+This is because I did not account for this in my tag filter section in my view:
+
+[Link to md file containing the original view.py](RMbugsolving_view_original.md)
+
+As such to fix this, I needed to update the filter system to remove all capitals and spacing from both the user's input and the tags in the json file.
+
+[Link to md file containing the updated view.py](RMbugsolving_view_updated.md)
+
+And now the test artist appears when using tag search:
+
+![Artist test appearing when I search for sketch](readme_assets/bug_solving/bug-solving-4.png)
 
 ## Final product
 
