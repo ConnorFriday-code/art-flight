@@ -21,3 +21,14 @@
 #sorry-search h2{
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 600px){
+
+    .card{
+        width: 90%;
+    }
+
+    .card-title{
+        font-size: 18px;
+    }
+}

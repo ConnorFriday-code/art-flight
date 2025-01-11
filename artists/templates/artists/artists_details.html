@@ -7,31 +7,32 @@
 
 {% block content %}
     <div class="plate border">
-        <div>
+        <div class="detail-div">
             {% if artist.image %}
                 <img src="{{ artist.image}}">
             {% else %}
                 <p><i>No Image Submitted</i></p>
             {% endif %}
         </div>
-        <div>
-            <h2 class="">{{ artist.artist_name }}</h2>
-            <h3>Description:</h3>
+        <div class="detail-div">
+            <h2 class="title">{{ artist.artist_name }}</h2>
+            <h3 class="details-mini-title">Description:</h3>
             <p>{{ artist.description }}</p>
         </div>
-        <div>
-            <div>
-                <h3>Do:</h3>
+        <div id="preferences" class="detail-div">
+            <div class="preference-mini-div">
+                <h3 class="details-mini-title">Do:</h3>
                 <p>{{ artist.dos }}</p>
             </div>
-            <div>
-                <h3>Won't do:</h3>
+            <div class="preference-mini-div">
+                <h3 class="details-mini-title">Won't do:</h3>
                 <p>{{ artist.donts }}</p>
             </div>
         </div>
-        <div>
-            <form>
+        <div class="detail-div">
+            <form id="commission-form">
                 {% csrf_token %}
+                    <h3 class="details-mini-title">Commission details</h3>
                     <p>Choose a option and price for it:</p>
                     <select>
                         {% for key, value in price.items %}

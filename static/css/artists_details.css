@@ -1,1 +1,39 @@
+.detail-div{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
 
+.details-mini-title{
+    text-decoration: underline;
+}
+
+#preferences{
+    display: flex;
+    flex-direction: column;
+}
+
+.preference-mini-div{
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+#commission-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px){
+    .detail-div h2{
+        font-size: 18px;
+    }
+
+    .detail-div h3{
+        font-size: 16px;
+    }
+}
