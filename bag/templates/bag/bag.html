@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/bag.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="plate border">
+        <div>
+            <h1>Your commissions:</h1>
+        </div>
+        <div>
+            {% if bag_items %}
+                
+            {% else %}
+                <h2>No commissions found!</h2>
+                <a href="{% url 'artists' %}">Do you want to find an artist?</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
