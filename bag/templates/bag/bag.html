@@ -26,6 +26,19 @@
                             <td>{{ item.commission_option }}</td>
                             <td>{{ item.details }}</td>
                             <td>{{ item.price|floatformat:2 }}</td>
+                            <td>
+                                <button 
+                                    type="button" 
+                                    class="modify-button" 
+                                    data-index="{{ forloop.counter0 }}" 
+                                    data-artist="{{ item.artist_name }}" 
+                                    data-option="{{ item.commission_option }}" 
+                                    data-details="{{ item.details }}" 
+                                    data-price="{{ item.price }}">
+                                    Modify
+                                </button>
+                            </td>
+                            <td>Delete</td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -59,4 +72,72 @@
             {% endif %}
         </div>
     </div>
+
+    <div id="edit-popup" class="form hidden">
+        <div class="edit-content">
+            <h2>Modify Commission</h2>
+            <form id="modify-form" action="{% url 'update_commission' %}" method="POST">
+                {% csrf_token %}
+
+                <input type="hidden" name="index" id="commission-index">
+                <input type="hidden" name="artist_id" id="artist-id">
+
+                <label for="commission-option">Option:</label>
+                <select name="commission_option" id="commission-option">
+                    {% for key, value in price.items %}
+                    <option value="{{ key }}">{{ key }} - £{{ value }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="details">Details:</label>
+                <textarea name="details" id="details"></textarea>
+
+                <label for="price">Price:</label>
+                <input type="text" name="price" id="price" readonly>
+                
+                <button type="submit">Save Changes</button>
+                <button type="button" id="cancel-modify">Cancel</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const modifyButtons = document.querySelectorAll(".modify-button");
+    const modal = document.getElementById("edit-popup");
+    const form = document.getElementById("modify-form");
+    const indexInput = document.getElementById("commission-index");
+    const artistInput = document.getElementById("artist-id");
+    const optionSelect = document.getElementById("commission-option");
+    const detailsTextarea = document.getElementById("details");
+    const priceInput = document.getElementById("price");
+
+    modifyButtons.forEach(button => {
+        button.addEventListener("click", function () {
+
+            // Populate the form with data from the button
+            indexInput.value = button.dataset.index;
+            artistInput.value = button.dataset.artist;
+            optionSelect.value = button.dataset.option;
+            detailsTextarea.value = button.dataset.details;
+            priceInput.value = button.dataset.price;
+
+            modal.classList.remove("hidden");
+            modal.style.display = "flex";
+        });
+    });
+
+    document.getElementById("cancel-modify").addEventListener("click", function () {
+        const modal = document.getElementById("edit-popup");
+        modal.classList.add("hidden");
+        modal.style.display = "none"; // Explicitly hide the modal
+        console.log("Modal closed");
+    });
+});
+
+</script>
 {% endblock %}

@@ -51,6 +51,23 @@ body{
     text-align: center;
 }
 
+.yellow-bg{
+    cursor: pointer;
+}
+
+.yellow-bg:hover{
+    background-color: #eded4e;
+    animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.3s;
+}
+
+@keyframes fadeInOpacity {
+    from {background-color: #e0e0e0}
+    to {background-color: #eded4e;}
+}
+
 /* -------------------------------------------- header */
 
 .header{
@@ -200,7 +217,7 @@ body{
     box-sizing: border-box;
 }
 
-/* -------------------------------------------- header */
+/* -------------------------------------------- footer */
 
 #footer{
     width: 100%;
@@ -226,10 +243,12 @@ body{
 
 .message-container {
     position: fixed;
-    top: 10%;
+    top: 5%;
     right: 50%;
     z-index: 1000;
     width: 300px;
+    height: 200px;
+    margin-right: -150px;
 }
 
 .message {
