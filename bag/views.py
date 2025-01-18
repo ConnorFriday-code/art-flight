@@ -39,8 +39,6 @@ def add_to_bag(request, id):
 
     request.session['bag'] = bag
 
-    """messages.success(request, f"Added a commission for {artist.artist_name} to your bag!")"""
-
-    print(request.session['bag'])
+    messages.success(request, f"Added a commission for {artist.artist_name} to your bag!")
 
     return redirect(redirect_url)

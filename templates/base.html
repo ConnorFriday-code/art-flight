@@ -40,6 +40,7 @@
     <!-- JS -->
 
     {% block corejs %}
+    <script src="{% static 'js/base.js' %}"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -149,7 +150,13 @@
     </header>
 
     {% if messages %}
-        <div class="message-container"></div>
+    <div class="message-container">
+        {% for message in messages %}
+            <div class="message {{ message.tags }} border">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
     {% endif %}
 
     {% block headers%}
