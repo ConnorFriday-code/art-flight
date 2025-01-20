@@ -1,0 +1,35 @@
+[33m60f64e8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Creating modify bag popup and styling the pages a little.
+[33m1d98300[m Setting up bag content.
+[33meb1f1ce[m Adding fading flash messages to site.
+[33m7f4ebe4[m Creating form detail/view to add commission to bag.
+[33m3c7c0f3[m Adding bag page.
+[33m8ffbe6b[m Styling artist list and artist details page.
+[33m66189d0[m Updating price section in artist details.
+[33m99a8648[m Fixing tag search and artist details link.
+[33m37f2c24[m Adding artists to artists page, adding to bug solving in readme.
+[33m3cb4e45[m Adding admin link and stling index page.
+[33m8078db0[m Fixing create service to work.
+[33m3b5a3a6[m Removing tag selection due to too many bugs.
+[33m559ef83[m Making progress on tag sytem. Styling create page.
+[33m48597e2[m Adding tags models and doing migrations.
+[33m17a3b69[m Adding form to create.html for CRUD.
+[33m264d3d7[m Beginning to create user input form to create services.
+[33mdc327de[m Creating user page.
+[33medd9ba3[m Adding search function. Refining sorting layout to be clearer.
+[33mf433659[m Creating artists details and basic form layout.
+[33m6a1594e[m Adding price sorting and tag filtering to nav and menu links.
+[33ma4db29f[m Adding link on index to products. Expanding products page.
+[33ma5c6a6d[m Creating artists.url and connecting it to the database.
+[33m915a395[m Changing Admin layout for Tags and Artist sections.
+[33mf876383[m Adding fixtures and doing migrations.
+[33m7aec215[m Creating dropdown nav, adding json files.
+[33m098a62c[m Adding MEDIA folder to settings and url files.
+[33m381bf3b[m Styling header/nav section.
+[33m96a1ea5[m Adding CSS style sheet to base.html.
+[33mc2a99f9[m Adding header bar.
+[33m7c52509[m Added home app and templates.
+[33m40844b3[m Adding allauth.
+[33mebbbcd3[m README: Adding wireframe. Installed django.
+[33ma5df98a[m README.MD:Adding to ux, database, and technology used sections.
+[33medd6024[m Initial commit
+[33m2f37fe1[m Initial commit

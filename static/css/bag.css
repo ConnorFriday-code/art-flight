@@ -1,6 +1,6 @@
 /* -------------------------------------------- edit form pop-up */
 
-.form {
+.form-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,7 +14,7 @@
     display: none;
 }
 
-.edit-content {
+.edit-form {
     background: white;
     padding: 20px;
     border-radius: 5px;
@@ -24,4 +24,8 @@
 
 .hidden {
     display: none;
+}
+
+.visible {
+    display: flex;
 }

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from user_profile.models import Artist
 
@@ -19,6 +20,7 @@ def bag(request):
         for commission in data['commissions']:
             total += commission['price']
             bag_items.append({
+                'artist_id': artist.id,
                 'artist_name': data['artist_name'],
                 'commission_option': commission['commission_option'],
                 'details': commission['details'],
@@ -65,28 +67,39 @@ def add_to_bag(request, id):
     messages.success(request, f"Added a commission for {artist.artist_name} to your bag!")
 
     return redirect(redirect_url)
+    
+def modify_bag(request, id):
+    # Retrieve the artist object based on the provided ID
+    artist = get_object_or_404(Artist, id=id)
 
-def update_commission(request):
+    # Print the artist object to debug and confirm it has an ID
+    print(f"Artist object: {artist}")  # This will print the artist object in your console (or logs)
 
-    """Update a specific commission in the bag"""
+    # If the artist exists, retrieve their price (or other related data)
+    price = artist.price
+
+    # Fetch bag items if needed (make sure 'bag_items' exists and is correctly populated)
+    bag_items = ...  # Retrieve the bag items from the session or database
+
+    # Pass the artist and other context variables to the template
+    context = {
+        'artist': artist,
+        'price': price,
+        'bag_items': bag_items,  # Ensure bag items exist if you're using them
+    }
+
+    return render(request, 'bag/bag.html', context)
+
+@csrf_exempt
+def update_commission(request, id):
     if request.method == "POST":
-        bag = request.session.get('bag', {})
-        index = int(request.POST.get('index'))
-        artist_id = str(request.POST.get('artist_id'))
-        option = request.POST.get('commission_option')
-        details = request.POST.get('details')
-        price = float(request.POST.get('price'))
+        data = json.loads(request.body)
+        artist = get_object_or_404(Artist, id=id)
 
-        if artist_id in bag and 0 <= index < len(bag[artist_id]['commissions']):
-            bag[artist_id]['commissions'][index] = {
-                'commission_option': option,
-                'price': price,
-                'details': details,
-            }
+        # Update the artist's commission details
+        artist.details = data.get("details", artist.details)
+        artist.price = data.get("option", artist.price)
+        artist.save()
 
-            request.session['bag'] = bag
-            messages.success(request, "Commission updated successfully!")
-        else:
-            messages.error(request, "Invalid commission data.")
-
-    return redirect('bag')
+        return JsonResponse({"success": True})
+    return JsonResponse({"success": False, "error": "Invalid request"}, status=400)

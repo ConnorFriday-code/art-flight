@@ -6,7 +6,7 @@ from user_profile.models import Artist
 def bag_contents(request):
 
     bag_items = []
-    total = 0
+    total = Decimal(0)
     product_count = 0
 
     bag = request.session.get('bag', {})
@@ -15,7 +15,8 @@ def bag_contents(request):
         artist = get_object_or_404(Artist, id=artist_id)
 
         for commission in data['commissions']:
-            total += commission['price']
+            price = Decimal(commission['price'])
+            total += price
             bag_items.append({
                 'artist_id': artist_id,
                 'artist_name': artist.artist_name,
@@ -25,7 +26,7 @@ def bag_contents(request):
             })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE)
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
     else:
         delivery = 0
