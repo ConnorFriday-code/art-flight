@@ -26,16 +26,14 @@
                             <td class="option">{{ item.commission_option }}</td>
                             <td class="details">{{ item.details }}</td>
                             <td class="price">{{ item.price|floatformat:2 }}</td>
-                            <td class="id">{{ artist.id }}</td>
                             <td>
-                                <button 
-                                    type="button"
-                                    class="modify-button"
-                                    data-artist_id="{{ item.artist_id }}"
-                                    data-details="{{ item.details }}"
-                                    data-option="{{ item.price|floatformat:2 }}">
-                                    Modify (Artist ID: {{ item.artist_id }})
-                                </button>
+                                <a href="{% url 'edit_bag' item.artist_id %}?details={{ item.details }}">
+                                    <button type="button" class="modify-button" 
+                                    data-artist_id="{{ item.artist_id }}" 
+                                    data-details="{{ item.details }}">
+                                        Modify
+                                    </button>
+                                </a>
                             </td>
                             <td>Delete</td>
                         </tr>
@@ -71,116 +69,5 @@
             {% endif %}
         </div>
     </div>
-
-    <div id="modify-form" class="hidden form-bg">
-        <div class="edit-form">
-            <form>
-                {% csrf_token %}
-                <h3>Edit commission:</h3>
-                <label>Edit option/price:</label>
-                <select id="commission-option" name="commission_option">
-                    {% for key, value in price.items %}
-                    <option value="{{ key }}" data-price="{{ value }}">{{ key }} - £{{ value }}</option>
-                    {% endfor %}
-                </select>
-                <label>Edit details:</label>
-                <textarea class="modify-details"></textarea>
-                <button class="update-order" type="submit">Confirm Edit</button>
-                <button class="cancel-edit">Cancel</button>
-            </form>
-        </div>
-    </div>
-{% endblock %}
-
-{% block postloadjs %}
-
-<script>
-document.querySelectorAll(".modify-button").forEach(function(button) {
-    button.addEventListener("click", function() {
-        // Log the artistId to ensure it's being set
-        console.log("Button clicked with artist_id:", this.dataset.artistId);
-
-        // Mark the selected button using a data attribute
-        document.querySelector("#modify-form").dataset.selectedButton = this.dataset.artistId;
-
-        // Toggle visibility of the modify-form
-        document.querySelector("#modify-form").classList.toggle("hidden");
-        document.querySelector("#modify-form").classList.toggle("visible");
-
-        // Log the button data to ensure it's correct
-        console.log(this.dataset);
-
-        // Populate the form with existing details
-        var details = this.dataset.details;
-        var option = this.dataset.option;
-
-        // Populate the form fields
-        document.querySelector(".modify-details").value = details;
-
-        var selectElement = document.querySelector("#commission-option");
-        for (var optionElement of selectElement.options) {
-            if (optionElement.value == option) {
-                optionElement.selected = true;
-                break;
-            }
-        }
-    });
-});
-
-    // Cancel button
-    document.querySelector(".update-order").addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    var form = document.querySelector("#modify-form");
-    var selectedArtistId = form.dataset.selectedButton;
-
-    // Check if selectedArtistId exists and find the corresponding button
-    if (selectedArtistId) {
-        console.log("Updating item with artistId:", selectedArtistId);  // Debug log
-
-        // Find the original button by artistId
-        var originalButton = document.querySelector(`.modify-button[data-artist_id="${selectedArtistId}"]`);
-
-        // Debug: Check if the original button is found
-        if (!originalButton) {
-            console.error("Original button not found for artistId:", selectedArtistId);
-            return; // Exit if no matching button is found
-        }
-
-        // Get updated values from the form
-        var updatedDetails = document.querySelector(".modify-details").value;
-        var updatedOption = document.querySelector("#commission-option").value;
-
-        // Check that the updated values are valid
-        if (!updatedDetails.trim()) {
-            alert("Details cannot be empty.");
-            return;
-        }
-
-        if (isNaN(updatedOption) || updatedOption <= 0) {
-            alert("Please provide a valid price.");
-            return;
-        }
-
-        // Update the original button's data attributes
-        originalButton.dataset.details = updatedDetails;
-        originalButton.dataset.option = updatedOption;
-
-        // You can also update the visible table or UI if needed
-        var parentRow = originalButton.closest("tr");
-        parentRow.querySelector(".details").textContent = updatedDetails;
-        parentRow.querySelector(".price").textContent = updatedOption;
-
-        // Hide the form
-        form.classList.add("hidden");
-        form.classList.remove("visible");
-
-        // Remove the marker
-        delete form.dataset.selectedButton;
-    } else {
-        alert("No item selected for editing.");
-    }
-});
-</script>
 
 {% endblock %}

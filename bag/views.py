@@ -36,6 +36,7 @@ def bag(request):
     return render(request, 'bag/bag.html', context)
 
 def add_to_bag(request, id):
+
     """Add a commission to the shopping bag"""
 
     artist_id = request.POST.get('artist_id')
@@ -67,39 +68,16 @@ def add_to_bag(request, id):
     messages.success(request, f"Added a commission for {artist.artist_name} to your bag!")
 
     return redirect(redirect_url)
-    
-def modify_bag(request, id):
-    # Retrieve the artist object based on the provided ID
-    artist = get_object_or_404(Artist, id=id)
 
-    # Print the artist object to debug and confirm it has an ID
-    print(f"Artist object: {artist}")  # This will print the artist object in your console (or logs)
+def edit_bag(request, artist_id):
+    artist = Artist.objects.get(id=artist_id)
+    details = request.GET.get('details', '')
+    commission_option = request.GET.get('commission_option', '')
 
-    # If the artist exists, retrieve their price (or other related data)
-    price = artist.price
-
-    # Fetch bag items if needed (make sure 'bag_items' exists and is correctly populated)
-    bag_items = ...  # Retrieve the bag items from the session or database
-
-    # Pass the artist and other context variables to the template
     context = {
         'artist': artist,
-        'price': price,
-        'bag_items': bag_items,  # Ensure bag items exist if you're using them
+        'details': details,
+        'commission_option': commission_option,
+        'price': artist.price,
     }
-
-    return render(request, 'bag/bag.html', context)
-
-@csrf_exempt
-def update_commission(request, id):
-    if request.method == "POST":
-        data = json.loads(request.body)
-        artist = get_object_or_404(Artist, id=id)
-
-        # Update the artist's commission details
-        artist.details = data.get("details", artist.details)
-        artist.price = data.get("option", artist.price)
-        artist.save()
-
-        return JsonResponse({"success": True})
-    return JsonResponse({"success": False, "error": "Invalid request"}, status=400)
+    return render(request, 'bag/edit_bag.html', context)
