@@ -39,7 +39,7 @@
                     <p>Choose a option and price for it:</p>
                     <select id="commission-option" name="commission_option">
                         {% for key, value in price.items %}
-                        <option value="{{ key }}">{{ key }} - £{{ value }}</option>
+                        <option value="{{ key }}">{{ key }} - £{{ value|floatformat:2 }}</option>
                         {% endfor %}
                     </select>
                 <textarea name="commission_details" placeholder="Please specify your order here..."></textarea>

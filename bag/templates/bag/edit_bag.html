@@ -8,18 +8,25 @@
 {% block content %}
     <div class="plate border">
         <h1>Edit Your Order for {{ artist.artist_name }}</h1>
-        <form>
+        <form method="post" action="{% url 'edit_bag' artist.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="bag_id" value="{{ bag_id }}">
+            <input type="hidden" name="details" value="{{ details }}">
+            <input type="hidden" name="current_option" value="{{ commission_option }}">
+        
             <label for="commission-option">Edit Price/Options</label>
             <select id="commission-option" name="commission_option" required>
                 {% for key, value in price.items %}
-                <option value="{{ key }}">{{ key }} - £{{ value }}</option>
+                <option value="{{ key }}" {% if key == commission_option %}selected{% endif %}>{{ key }} - £{{ value }}</option>
                 {% endfor %}
             </select>
+        
             <label>Edit details</label>
-            <textarea name="edit-details" id="edit-details" required>{{ details }}</textarea>
+            <textarea name="edit_details" id="edit-details" required>{{ details }}</textarea>
+        
             <div id="edit-form-buttons">
                 <button type="submit">Confirm Edit</button>
-                <a><button>Cancel Edit</button></a>
+                <a href="{% url 'bag' %}"><button type="button">Cancel Edit</button></a>
             </div>
         </form>
     </div>

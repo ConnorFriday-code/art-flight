@@ -27,10 +27,11 @@
                             <td class="details">{{ item.details }}</td>
                             <td class="price">{{ item.price|floatformat:2 }}</td>
                             <td>
-                                <a href="{% url 'edit_bag' item.artist_id %}?details={{ item.details }}">
+                                <a href="{% url 'edit_bag' item.artist_id %}?details={{ item.details }}&bag_id={{ item.bag_id }}&commission_option={{ item.commission_option }}">
                                     <button type="button" class="modify-button" 
                                     data-artist_id="{{ item.artist_id }}" 
-                                    data-details="{{ item.details }}">
+                                    data-details="{{ item.details }}"
+                                    data-bag_id="{{ item.bag_id }}" >
                                         Modify
                                     </button>
                                 </a>
@@ -48,7 +49,7 @@
                             <td>Delivery:</td>
                             <td>£{{delivery|floatformat:2}}</td>
                             {% if free_delivery_delta > 0 %}
-                            <td>You could get a free delivery if you spend <strong>£{{ free_delivery_delta }}</strong> more!</td>
+                            <td>You could get a free delivery if you spend <strong>£{{ free_delivery_delta|floatformat:2 }}</strong> more!</td>
                             {% endif %}
                         </tr>
                         <tr>
