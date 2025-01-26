@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from user_profile.models import Artist
+from django.http import JsonResponse
 import uuid
 
 # Create your views here.
@@ -115,3 +116,6 @@ def edit_bag(request, artist_id):
         'price': artist.price,
     }
     return render(request, 'bag/edit_bag.html', context)
+
+def remove_commission(request, bag_id):
+    """Remove a commission from the bag"""

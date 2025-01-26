@@ -36,7 +36,7 @@
                                     </button>
                                 </a>
                             </td>
-                            <td>Delete</td>
+                            <td><button type="button" class="delete-button" data-bag_id="{{ item.bag_id }}">Delete</button></td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -71,4 +71,19 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+<script>
+     document.addEventListener('DOMContentLoaded', () => {
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                var csrfToken = "{{ csrf_token }}";
+                var bag_id
+            });
+        });
+    });
+</script>
 {% endblock %}
