@@ -8,9 +8,9 @@
 {% block content %}
     <div class="plate border">
         <div id="welcome-message">
-            <img src="" alt="Site Logo">
-            <h2 class="title">Welcome To Art Flight</h2>
-            <p>Where we make your art career soar high!</p>
+            <img src="{% static 'site_images/logo.png' %}" id="welcome-logo" alt="Site Logo">
+            <h2 class="title centre">Welcome To Art Flight</h2>
+            <p class="centre">Where we make your art career soar high!</p>
             <a href="{% url 'artists' %}" id="shop-now-button" class="border">
                 <h2 class="title">Shop Now</h2>
             </a>

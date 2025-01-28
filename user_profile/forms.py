@@ -52,7 +52,6 @@ class CreateService(forms.ModelForm):
 
     def save(self, commit=True):
         instance = super().save(commit=False)
-        # Assign the cleaned `price` to the model instance
         instance.price = self.cleaned_data.get('price', {})
         if commit:
             instance.save()

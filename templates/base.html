@@ -61,8 +61,10 @@
         <div id="header-large" class="header border">
             <div id="header-top">
                 <div id="branding">
-                    <p>logo</p>
-                    <h1>
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'site_images/logo.png' %}" id="logo-img" alt="Site Logo">
+                    </a>
+                    <h1 id="site-title">
                         <a href="{% url 'home' %}" class="title">ART FLIGHT</a>
                     </h1>
                 </div>
@@ -78,7 +80,7 @@
                         <!-- if user is a superuser then add extra admin link-->
 
                         {% if request.user.is_superuser %}
-                            <a href="/admin/">Site Management</a>
+                            <a href="/admin/">Site Admin</a>
                         {% endif %}
 
                         <!-- Load option to view profile/logout -->
