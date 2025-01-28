@@ -119,3 +119,21 @@ def edit_bag(request, artist_id):
 
 def remove_commission(request, bag_id):
     """Remove a commission from the bag"""
+    bag = request.session.get('bag', {})
+    
+    # Iterate through all items and remove the one with the matching bag_id
+    for artist_id in list(bag.keys()):
+        bag[artist_id]['commissions'] = [
+            commission for commission in bag[artist_id]['commissions']
+            if commission['bag_id'] != bag_id
+        ]
+
+        # Remove artist from bag if no commissions are left
+        if not bag[artist_id]['commissions']:
+            bag.pop(artist_id)
+    
+    # Save the updated bag in the session
+    request.session['bag'] = bag
+    request.session.modified = True
+
+    return JsonResponse({'success': True, 'bag_id': bag_id})

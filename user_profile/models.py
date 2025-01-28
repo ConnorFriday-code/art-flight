@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 import uuid
 
 class Artist(models.Model):
-    sku = models.CharField(max_length=10, unique=True, default=uuid.uuid4)
+    sku = models.CharField(max_length=36, unique=True, default=uuid.uuid4)
     artist_name = models.CharField(max_length=255, blank=True)
     email = models.EmailField(blank=True)
     description = models.TextField(blank=True)

@@ -75,15 +75,32 @@
 
 {% block postloadjs %}
 <script>
-     document.addEventListener('DOMContentLoaded', () => {
-        const deleteButtons = document.querySelectorAll('.delete-button');
+document.addEventListener('DOMContentLoaded', () => {
+    const deleteButtons = document.querySelectorAll('.delete-button');
 
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                var csrfToken = "{{ csrf_token }}";
-                var bag_id
-            });
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const bagId = button.getAttribute('data-bag_id');
+            const csrfToken = "{{ csrf_token }}";
+
+            fetch(`/bag/remove_commission/${bagId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    button.closest('tr').remove();
+
+                    location.reload();
+                }
+            })
+            .catch(error => console.error('Error:', error));
         });
     });
+});
 </script>
 {% endblock %}
