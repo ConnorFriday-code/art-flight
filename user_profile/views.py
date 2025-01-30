@@ -27,7 +27,8 @@ def create(request):
 
     return render(request, 'profile/create.html', {'form': form})
 
-@login_required
+
+# Edit artist post/advert
 def edit(request, pk):
     artist = get_object_or_404(Artist, pk=pk, user=request.user)
 
@@ -40,3 +41,13 @@ def edit(request, pk):
         form = CreateService(instance=artist)
 
     return render(request, 'profile/edit.html', {'form': form, 'artist': artist})
+
+# Delete artist post or advert
+def delete_artist(request, pk):
+    artist = get_object_or_404(Artist, pk=pk, user=request.user)
+
+    if request.method == "POST":
+        artist.delete()
+        return redirect('profile')
+
+    return render(request, 'profile/profile.html')

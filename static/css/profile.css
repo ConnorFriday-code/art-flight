@@ -33,8 +33,23 @@ label{
 #edit-div-title{
     text-decoration: underline;
     cursor: pointer;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #edit-div{
+    display: none;
+}
+
+#delete-div-title{
+    text-decoration: underline;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#delete-div{
     display: none;
 }
