@@ -27,28 +27,28 @@
             <a href="{% url 'artists_details' artist.sku %}" class="card border">
                 <div>
                     <div>
-                        <h2 class="card-title">{{ artist.artist_name }}</h2>
+                        <h2 class="card-title centre">{{ artist.artist_name }}</h2>
                     </div>
                     <div>
                         {% if artist.image %}
-                        <img src="{{ artist.image}}">
+                        <img src="{{ artist.image.url }}" class="artist-images">
                         {% else %}
-                        <p><i>No Image Submitted</i></p>
+                        <p class="centre"><i>No Image Submitted</i></p>
                         {% endif %}
                     </div>
                     <div>
                         <div>
                             <h3>Description:</h3>
-                            <p>{{ artist.description }}</p>
+                            <p class="card-info">{{ artist.description }}</p>
                         </div>
                         <div>
                             <div>
                                 <h3>Do:</h3>
-                                <p>{{ artist.dos }}</p>
+                                <p class="card-info">{{ artist.dos }}</p>
                             </div>
                             <div>
                                 <h3>Won't do:</h3>
-                                <p>{{ artist.donts }}</p>
+                                <p class="card-info">{{ artist.donts }}</p>
                             </div>
                         </div>
                     </div>

@@ -21,7 +21,30 @@
             </li>
             <li>
                 <div>
-                    <h3>Edit a service</h3>
+                    <h3 id="edit-div-title">Edit a service</h3>
+                    <div id="edit-div">
+                        {% if user.artists.all %}
+                            <ul>
+                                {% for artist in user.artists.all %}
+                                    <li>
+                                        <div>
+                                            <a href="{% url 'edit' artist.pk %}">
+                                                {{ artist.description }}
+                                            </a>
+                                            <ul>
+                                                {% for key, value in artist.price.items %}
+                                                    <li>{{ key }} - £{{ value|floatformat:2 }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                        {% else %}
+                            <li>No services found.</li>
+                            <li>Do you want to <a href="{% url 'create' %}">create one?</a></li>
+                        {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </li>
             <li>
@@ -33,4 +56,21 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+<script>
+    // Hide and reveal edit list on click
+    document.getElementById("edit-div-title").addEventListener("click", hideShowEdit);
+
+    function hideShowEdit(){
+        var editDiv = document.getElementById("edit-div")
+        if (editDiv.style.display === "none" || editDiv.style.display === ""){
+            editDiv.style.display = "flex"
+        }
+        else {
+            editDiv.style.display = "none"
+        }
+    }
+</script>
 {% endblock %}

@@ -21,6 +21,8 @@
 .card{
     display: inline-block;
     width: 45%;
+    height: 800px;
+    max-height: 800px;
     margin: 10px auto;
     padding: 5px;
 }
@@ -33,6 +35,25 @@
     padding: 4px;
     margin: 0;
 }
+
+.artist-images{
+    display: flex;
+    max-width: 200px;
+    height: auto;
+    max-height: 300px;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.card-info{
+    height: 100px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.artist-images:hover{
+    box-shadow: 0 0 2px 1px rgba(20, 10, 7, 0.5);
+  }
 
 #sorry-search{
     width: 100%;

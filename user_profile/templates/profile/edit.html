@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="plate centre">
+        <h2>Edit Service: {{ artist.artist_name }}</h2>
+    
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save Changes</button>
+            <a href="{% url 'profile' %}">Cancel</a>
+        </form>
+</div>
+
+{% endblock %}

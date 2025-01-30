@@ -1,18 +1,18 @@
 import os
 import json
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import CreateService
 from .models import Artist
-from django.shortcuts import render
 from django.conf import settings
 
-# Define the profile view
+# Render profile
 @login_required
 def profile_view(request):
 
     return render(request, 'profile/profile.html')
 
+#Create new artist advert/post
 @login_required
 def create(request):
     if request.method == "POST":
@@ -26,3 +26,17 @@ def create(request):
         form = CreateService()
 
     return render(request, 'profile/create.html', {'form': form})
+
+@login_required
+def edit(request, pk):
+    artist = get_object_or_404(Artist, pk=pk, user=request.user)
+
+    if request.method == "POST":
+        form = CreateService(request.POST, request.FILES, instance=artist)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = CreateService(instance=artist)
+
+    return render(request, 'profile/edit.html', {'form': form, 'artist': artist})
