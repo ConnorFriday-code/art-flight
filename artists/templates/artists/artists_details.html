@@ -12,7 +12,7 @@
         </div>
         <div class="detail-div">
             {% if artist.image %}
-                <img src="{{ artist.image}}">
+                <img src="{{ artist.image.url }}">
             {% else %}
                 <p><i>No Image Submitted</i></p>
             {% endif %}
