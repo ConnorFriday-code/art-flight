@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-^b!!$o&ou0!!zr)^7a$$-=^akijcd4a_6t+#*dwcbdjc4k+#cz
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-connorfridayc-artflight-xaa8drxsjmk.ws-eu117.gitpod.io'
+    '127.0.0.1'
     ]
 
 
@@ -75,7 +75,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
