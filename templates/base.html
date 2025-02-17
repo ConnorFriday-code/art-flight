@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 
-    <!-- custom css -->
+    <!-- Custom css -->
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
@@ -40,13 +40,18 @@
     <!-- JS -->
 
     {% block corejs %}
+
+    <!-- Core Js -->
     <script src="{% static 'js/base.js' %}"></script>
+
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     {% block extra_js %}
     {% endblock %}
 
-    <!-- title -->
+    <!-- Title -->
 
     <title>Art Flight {% block extra_title%}{% endblock %}</title>
 </head>
@@ -160,9 +165,6 @@
         {% endfor %}
     </div>
     {% endif %}
-
-    {% block headers%}
-    {% endblock %}
 
     <div id="content">
     {% block content %}
