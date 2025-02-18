@@ -21,3 +21,13 @@ var style = {
 
 var card = elements.create('card', { style: style });
 card.mount('#card-element');
+
+//Handle realtime validation errors on the card
+card.addEventListener('change', function(event) {
+    var errorDiv = document.getElementById('card-errors');
+    if (event.error) {
+        errorDiv.innerHTML = `<span>${event.error.message}</span>`;
+    } else {
+        errorDiv.textContent = '';
+    }
+});
