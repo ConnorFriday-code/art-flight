@@ -39,6 +39,7 @@ def checkout(request):
                     artist = get_object_or_404(Artist, id=artist_id)
                     
                     for commission in data['commissions']:
+                        print(f"Price being saved: {commission['price']} (type: {type(commission['price'])})")
                         order_line_item = OrderLineItem(
                             order=order,
                             artist=artist,

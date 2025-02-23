@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-from user_profile.models import Artist
+from decimal import Decimal
 
 # Create your models here.
 
@@ -27,15 +27,24 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
-        """ 
-        Update grand total each time a new line is added, 
-        accounting for delivery cost 
         """
-        self.order_total = self.lineitems.aggregate(sum('lineitem_total'))['lineitem_total__sum']
-        if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE/100
+        Update grand total each time a new line is added, 
+        accounting for delivery cost.
+        """
+        aggregated_total = self.lineitems.aggregate(total=Sum('lineitem_total'))['total']
+        # Ensure order_total is a Decimal
+        self.order_total = Decimal(aggregated_total) if aggregated_total is not None else Decimal('0.00')
+        
+        # Convert threshold and percentage to Decimals as well
+        free_delivery_threshold = Decimal(str(settings.FREE_DELIVERY_THRESHOLD))
+        standard_delivery_percentage = Decimal(str(settings.STANDARD_DELIVERY_PERCENTAGE))
+        
+        if self.order_total < free_delivery_threshold:
+            # Calculate delivery cost (divide by 100 to get a percentage)
+            self.delivery_cost = self.order_total * standard_delivery_percentage / Decimal('100')
         else:
-            self.delivery_cost = 0
+            self.delivery_cost = Decimal('0.00')
+        
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
     
@@ -61,7 +70,7 @@ class OrderLineItem(models.Model):
 
     def save(self, *args, **kwargs):
         """ Override the original save method to set order number """
-        self.lineitem_total = self.artist.price
+        self.lineitem_total = self.price
         super().save(*args, **kwargs)
 
     def __str__(self):
