@@ -7,11 +7,62 @@
 
 {% block content %}
     <div class="plate border">
-        <h2 class="title">Thank you!</h2>
-        <hr>
-        <p>Your purchase was successful. Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong></p>
         <div>
-            <p>Order info</p>
+            <h2 class="title">Thank you!</h2>
+            <hr>
+            <p>Your purchase was successful. Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong></p>
+            <div>
+                <h3>Order info:</h3>
+            </div>
+            <div>
+                <div>
+                    <p>Order Number:</p>
+                    <p>{{ order.order_number }}</p>
+                </div>
+            </div>
+            <div>
+                <h3>Order details:</h3>
+            </div>
+
+            <div>
+                {% for lineitem in order.lineitems.all %}
+                    <div class="commission-summary">
+                        <h3>Commission by {{ lineitem.artist.artist_name }}</h3>
+                        <p><strong>Commission Type:</strong> {{ lineitem.commission_option }}</p>
+                        <p><strong>Details:</strong> {{ lineitem.details }}</p>
+                        <p><strong>Price per Commission:</strong> ${{ lineitem.price }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div>
+                <div>
+                    <h3>Delivery/billing address:</h3>
+                </div>
+                
+                <div>
+                    <p>{{ order.full_name }}</p>
+                    <p>{{ order.email }}</p>
+                    <p>{{ order.phone_number }}</p>
+                    <p>{{ order.street_address1 }}</p>
+                    
+                    {% if order.street_address2 %}
+                        <p>{{ order.street_address2 }}</p>
+                    {% endif %}
+                    
+                    <p>{{ order.city }}</p>
+                    <p>{{ order.postcode }}</p>
+                    <p>{{ order.country }}</p>
+                </div>
+            </div>
+            <div>
+                <h3>Billing info:</h3>
+            </div>
+            <div>
+                <p><strong>Order Total:</strong> {{ order.order_total }}</p>
+                <p><strong>Delivery:</strong> {{ order.delivery_cost }}</p>
+                <p><strong>Grand total:</strong> {{ order.grand_total }}</p>
+            </div>
         </div>
     </div>
 
