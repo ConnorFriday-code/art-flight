@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Your Orders</h2>
+    <ul>
+        {% for order in orders %}
+            <li>
+                <a href="{% url 'order_detail' order.order_number %}">
+                    Order #{{ order.order_number }} - {{ order.date|date:"Y-m-d" }}
+                </a>
+            </li>
+        {% empty %}
+            <p>You have no orders yet.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

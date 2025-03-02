@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Order #{{ order.order_number }}</h2>
+<p>Date: {{ order.date }}</p>
+<p>Total: ${{ order.grand_total }}</p>
+
+<h3>Items:</h3>
+<ul>
+    {% for item in order.lineitems.all %}
+    <li>
+        {{ item.commission_option }} by {{ item.artist.artist_name }} - ${{ item.price }}
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'order_list' %}">Back to Orders</a>
+{% endblock %}

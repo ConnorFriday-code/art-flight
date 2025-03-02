@@ -12,7 +12,7 @@
         <h1 class="title">{{ request.user.username }}'s Profile Page</h1>
     </div>
     <div>
-        <h2>Manage services nav-dropdown</h2>
+        <h2 class="title">Manage services nav-dropdown</h2>
         <ul>
             <li>
                 <div>
@@ -83,6 +83,10 @@
                 </div>
             </li>
         </ul>
+    </div>
+    <div>
+        <h2 class="title">View past orders</h2>
+        <a href="{% url 'order_list' %}">View past orders</a>
     </div>
 </div>
 

@@ -1,10 +1,9 @@
-import os
-import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .forms import CreateService
 from .models import Artist
-from django.conf import settings
+from checkout.models import Order
 
 # Render profile
 @login_required
@@ -51,3 +50,18 @@ def delete_artist(request, pk):
         return redirect('profile')
 
     return render(request, 'profile/profile.html')
+
+# Display all orders
+@login_required
+def order_list(request):
+    """ Display all orders for the logged-in user """
+    orders = Order.objects.filter(user_profile__user=request.user).order_by('-date')
+    
+    return render(request, 'profile/order_list.html', {'orders': orders})
+
+@login_required
+def order_detail(request, order_number):
+    """ Display the details of a specific order """
+    order = get_object_or_404(Order, order_number=order_number, user_profile__user=request.user)
+    
+    return render(request, 'checkout/checkout_success.html', {'order': order})
