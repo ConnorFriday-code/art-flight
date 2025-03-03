@@ -1,13 +1,17 @@
 import uuid
+from decimal import Decimal
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-from decimal import Decimal
+
+
+from django_countries.fields import CountryField
 
 from django_countries.fields import CountryField
 from user_profile.models import UserProfile
 
 # Create your models here.
+
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
@@ -16,7 +20,7 @@ class Order(models.Model):
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    country = CountryField(blank_label='Country *', null=False, blank=False)
+    country = models.CharField(max_length=200,  null=True, choices=CountryField().choices + [('', 'Select Country')])
     postcode = models.CharField(max_length=20, null=False, blank=False)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
@@ -38,20 +42,13 @@ class Order(models.Model):
         Update grand total each time a new line is added, 
         accounting for delivery cost.
         """
-        aggregated_total = self.lineitems.aggregate(total=Sum('lineitem_total'))['total']
-        # Ensure order_total is a Decimal
-        self.order_total = Decimal(aggregated_total) if aggregated_total is not None else Decimal('0.00')
-        
-        # Convert threshold and percentage to Decimals as well
-        free_delivery_threshold = Decimal(str(settings.FREE_DELIVERY_THRESHOLD))
-        standard_delivery_percentage = Decimal(str(settings.STANDARD_DELIVERY_PERCENTAGE))
-        
-        if self.order_total < free_delivery_threshold:
-            # Calculate delivery cost (divide by 100 to get a percentage)
-            self.delivery_cost = self.order_total * standard_delivery_percentage / Decimal('100')
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+
+        if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
+            self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
         else:
-            self.delivery_cost = Decimal('0.00')
-        
+            self.delivery_cost = 0
+
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
     
@@ -63,6 +60,7 @@ class Order(models.Model):
     
     def __str__(self):
         return self.order_number
+
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
