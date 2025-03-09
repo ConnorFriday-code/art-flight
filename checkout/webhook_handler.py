@@ -1,9 +1,53 @@
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
+
+from .models import Order, OrderLineItem
+from user_profile.models import Artist
+from user_profile.models import UserProfile
+
+import json
+import time
+
 
 class StripeWH_Handler:
+
     """ Handle stripe webhooks """
+
     def __init__(self, request):
         self.request = request
+
+    def _send_order_emails(self, order):
+        # Send email to user (receipt)
+        subject_user = f"Order Confirmation - {order.order_number}"
+        body_user = render_to_string(
+            "emails/order_confirmation.txt",  # Use .txt file
+            {"order": order, "contact_email": settings.DEFAULT_FROM_EMAIL},
+        )
+        send_mail(
+            subject_user,
+            body_user,
+            settings.DEFAULT_FROM_EMAIL,
+            [order.email],
+            fail_silently=False,
+        )
+
+        # Send email to the artist
+        for line_item in order.lineitems.all():
+            artist_email = line_item.artist.email
+            subject_artist = f"New Commission Order from {order.full_name}"
+            body_artist = render_to_string(
+                "emails/artist_notification.txt",  # Use .txt file
+                {"order": order, "line_item": line_item, "contact_email": settings.DEFAULT_FROM_EMAIL},
+            )
+            send_mail(
+                subject_artist,
+                body_artist,
+                settings.DEFAULT_FROM_EMAIL,
+                [artist_email],
+                fail_silently=False,
+            )
     
     def handle_event(self, event):
         """
@@ -18,12 +62,13 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
+        print("Webhook triggered!") # Debug
+
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.bag
         save_info = intent.metadata.save_info
 
-        # Get the Charge object
         stripe_charge = stripe.Charge.retrieve(
             intent.latest_charge
         )
@@ -32,7 +77,6 @@ class StripeWH_Handler:
         shipping_details = intent.shipping
         grand_total = round(stripe_charge.amount / 100, 2)
 
-        # Clean data in the shipping details
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
@@ -114,4 +158,4 @@ class StripeWH_Handler:
         """
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
-            status = 200)
+            status=200)

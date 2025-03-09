@@ -1,0 +1,23 @@
+Hello {{ line_item.artist.artist_name }},
+
+This email is informing you of a new commission order:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+Customer: {{ order.full_name }}  
+Option: {{ line_item.commission_option }}  
+Details: {{ line_item.details }}  
+Price: ${{ line_item.price }}  
+
+Physical items for your order will need to be shipped to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.country }}.
+
+Please contact the client at {{ order.email }} to discuss further details.
+
+If you have any questions or encountered any errors, feel free to contact us at {{ contact_email }}.
+
+Thank you for your order!
+
+Sincerely,
+
+Art Flight
