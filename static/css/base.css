@@ -14,11 +14,18 @@ body{
 }
 
 .border{
-    border-top: 5px solid #3d2f29;
-    border-right: 5px solid #3d2f29;
-    border-bottom: 5px solid #6b5e49;
-    border-left: 5px solid #6b5e49;
+    border-top: 4px solid #3d2f29;
+    border-right: 4px solid #3d2f29;
+    border-bottom: 4px solid #6b5e49;
+    border-left: 4px solid #6b5e49;
     box-sizing: border-box;
+}
+
+.border:hover{
+    border-top: 4px solid #6d6348;
+    border-right: 4px solid #6d6348;
+    border-bottom: 4px solid #979469;
+    border-left: 4px solid #979469;
 }
 
 .title{

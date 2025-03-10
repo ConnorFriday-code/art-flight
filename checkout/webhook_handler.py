@@ -62,7 +62,6 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        print("Webhook triggered!") # Debug
 
         intent = event.data.object
         pid = intent.id
