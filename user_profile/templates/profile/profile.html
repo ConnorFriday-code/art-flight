@@ -7,41 +7,49 @@
 
 {% block content %}
 
-<div id="profile-options" class="plate centre">
-    <div>
+<div id="profile-options" class="plate centre border">
+    <div id="profile-banner">
         <h1 class="title">{{ request.user.username }}'s Profile Page</h1>
     </div>
+
     <div>
-        <h2 class="title">Manage services nav-dropdown</h2>
-        <ul>
+        <h2 class="title toggle-title title-style">
+            Manage services <span class="arrow">▼</span>
+        </h2>
+        <ul class="no-style toggle-content">
             <li>
-                <div>
-                    <a href="{% url 'create' %}"><h3>Create a service</h3></a>
+                <div id="create-service">
+                    <a href="{% url 'create' %}"><h3 class="sub-title title-style">Create a service</h3></a>
                 </div>
             </li>
+            <li>Or</li>
             <li>
                 <div>
-                    <h3 id="edit-div-title">Edit a service</h3>
-                    <div id="edit-div">
+                    <h3 id="edit-div-title" class="sub-title title-style">Edit a service</h3>
+                    <div id="edit-div" class="service-card-cont">
                         {% if user.artists.all %}
                                 {% for artist in user.artists.all %}
-                                <ul>
+                                <ul class="no-style service-card border">
                                     <li>
-                                        <div>
-                                            <a href="{% url 'edit' artist.pk %}">
-                                                {{ artist.description }}
-                                            </a>
-                                            <ul>
-                                                {% for key, value in artist.price.items %}
-                                                    <li>{{ key }} - £{{ value|floatformat:2 }}</li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
+                                        <a href="{% url 'edit' artist.pk %}">
+                                            <div>
+                                                <h4 class="service-card-subtitle">Service description:</h4>
+                                                <p>
+                                                    {{ artist.description }}
+                                                </p>
+                                                <p class="service-card-subtitle">Option/price:</p>
+                                                <ul>
+                                                    {% for key, value in artist.price.items %}
+                                                        <li>{{ key }} - £{{ value|floatformat:2 }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </a>
                                     </li>
                                 </ul>
                                 {% endfor %}
                         {% else %}
-                        <ul>
+                        <ul class="no-style centre">
                             <li>No services found to edit!</li>
                             <li>Do you want to <a href="{% url 'create' %}">create one?</a></li>
                         </ul>
@@ -51,22 +59,24 @@
             </li>
             <li>
                 <div>
-                    <h3 id="delete-div-title">Delete a service</h3>
+                    <h3 id="delete-div-title" class="sub-title title-style">Delete a service</h3>
                     <div id="delete-div">
-                        <ul>
+                        <ul class="no-style service-card-cont">
                         {% if user.artists.all %}
                             {% for artist in user.artists.all %}
-                                <li>
+                                <li class="service-card border">
                                     <div>
-                                        <a href="{% url 'edit' artist.pk %}">
+                                        <h4 class="service-card-subtitle">Service description:</h4>
+                                        <p>
                                             {{ artist.description }}
-                                        </a>
+                                        </p>
+                                        <p class="service-card-subtitle">Option/price:</p>
                                         <ul>
                                             {% for key, value in artist.price.items %}
                                                 <li>{{ key }} - £{{ value|floatformat:2 }}</li>
                                             {% endfor %}
                                         </ul>
-                                        <!-- Delete Form -->
+                                        
                                         <form method="post" action="{% url 'delete' artist.pk %}" onsubmit="return confirm('Are you sure you want to delete this post?');">
                                             {% csrf_token %}
                                             <button type="submit" class="delete-btn">Delete</button>
@@ -84,9 +94,11 @@
             </li>
         </ul>
     </div>
+
     <div>
-        <h2 class="title">View past orders</h2>
-        <a href="{% url 'order_list' %}">View past orders</a>
+        <a href="{% url 'order_list' %}">
+            <h2 class="title title-style">View past orders</h2>
+        </a>
     </div>
 </div>
 
@@ -119,5 +131,15 @@
             deletedDiv.style.display = "none"
         }
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleTitle = document.querySelector(".toggle-title");
+        const toggleContent = document.querySelector(".toggle-content");
+
+        toggleTitle.addEventListener("click", function () {
+            toggleContent.style.display = toggleContent.style.display === "block" ? "none" : "block";
+            toggleTitle.classList.toggle("active");
+        });
+    });
 </script>
 {% endblock %}

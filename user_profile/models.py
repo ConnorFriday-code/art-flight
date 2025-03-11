@@ -6,6 +6,7 @@ from django.dispatch import receiver
 
 from django_countries.fields import CountryField
 
+
 class Artist(models.Model):
     sku = models.CharField(max_length=36, unique=True, default=uuid.uuid4)
     artist_name = models.CharField(max_length=255, blank=True)
@@ -28,6 +29,7 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.artist_name
+    
     
 class UserProfile(models.Model):
     """

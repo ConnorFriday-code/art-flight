@@ -1,6 +1,26 @@
+#profile-banner{
+    width: 100%;
+    background-color: #0c0c0c;
+    color: #e9e9e9;
+}
+
 #profile-options{
+    display: flex;
     flex-direction: column;
     align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-style{
+    list-style: none;
+    padding: 0;
+}
+
+.sub-title{
+    background-color: #0c0c0c;
+    color: #e9e9e9;
+    font-size: 28px;
 }
 
 .form-options{
@@ -9,9 +29,6 @@
     align-content: center;
     justify-content: space-around;
     width: 70%;
-}
-.underline{
-    text-decoration: underline;
 }
 
 form div{
@@ -31,7 +48,6 @@ label{
 }
 
 #edit-div-title{
-    text-decoration: underline;
     cursor: pointer;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -40,10 +56,10 @@ label{
 
 #edit-div{
     display: none;
+    justify-content: space-evenly;
 }
 
 #delete-div-title{
-    text-decoration: underline;
     cursor: pointer;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -52,4 +68,74 @@ label{
 
 #delete-div{
     display: none;
+}
+
+#profile-options .toggle-content {
+    display: none;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.toggle-title .arrow {
+    font-size: 14px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.toggle-title.active .arrow {
+    transform: rotate(180deg);
+}
+
+.title-style{
+    cursor: pointer;
+    background-color: #6b5e49;
+    color: #e9e9e9;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.title-style:hover{
+    background-color: #0c0c0c;
+}
+
+h3{
+    width: 80%;
+    max-width: 350px;
+}
+
+h2{
+    width: 80%;
+    max-width: 400px;
+}
+
+.service-card-cont{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.service-card{
+    width: 40%;
+    text-decoration: none;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.service-card a{
+    text-decoration: none;
+}
+
+.service-card-subtitle{
+    font-family: "Nokora", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 600px){
+    .service-card{
+        width: 80%;
+    }
 }
