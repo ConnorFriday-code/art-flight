@@ -1,6 +1,7 @@
 from django import forms
 from .models import Artist
 from .models import UserProfile
+from django.core.exceptions import ValidationError
 
 
 class UserProfileForm(forms.ModelForm):
@@ -34,7 +35,25 @@ class UserProfileForm(forms.ModelForm):
             self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
             self.fields[field].label = False
 
+
 class CreateService(forms.ModelForm):
+
+    slots = forms.IntegerField(
+        min_value=0,  # Prevent negative values
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'min': '0'})
+    )
+
+
+    class Meta:
+        model = Artist
+        fields = ['tag', 'description', 'dos', 'donts', 'slots', 'image']
+
+    def clean_slots(self):
+        slots = self.cleaned_data.get('slots')
+        if slots < 1:
+            raise ValidationError("Slots cannot be negative or zero.")
+        return slots
+
     price_keys = forms.CharField(
         widget=forms.Textarea(attrs={'rows': 5, 'placeholder': 'Enter price keys (one per line)'}),
         required=False
@@ -56,6 +75,7 @@ class CreateService(forms.ModelForm):
         ),
         label="Tag"
     )
+
 
     class Meta:
         model = Artist

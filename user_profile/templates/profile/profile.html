@@ -25,7 +25,7 @@
             <li>Or</li>
             <li>
                 <div>
-                    <h3 id="edit-div-title" class="sub-title title-style">Edit a service</h3>
+                    <h3 id="edit-div-title" class="sub-title title-style">Edit a service <span class="arrow">▼</span></h3>
                     <div id="edit-div" class="service-card-cont">
                         {% if user.artists.all %}
                                 {% for artist in user.artists.all %}
@@ -59,7 +59,7 @@
             </li>
             <li>
                 <div>
-                    <h3 id="delete-div-title" class="sub-title title-style">Delete a service</h3>
+                    <h3 id="delete-div-title" class="sub-title title-style">Delete a service <span class="arrow">▼</span></h3>
                     <div id="delete-div">
                         <ul class="no-style service-card-cont">
                         {% if user.artists.all %}
@@ -106,29 +106,22 @@
 
 {% block postloadjs %}
 <script>
-    // Hide and reveal edit list on click
-    document.getElementById("edit-div-title").addEventListener("click", hideShowEdit);
+    document.getElementById("edit-div-title").addEventListener("click", function () {
+        toggleSection("edit-div", this);
+    });
 
-    function hideShowEdit(){
-        var editDiv = document.getElementById("edit-div")
-        if (editDiv.style.display === "none" || editDiv.style.display === ""){
-            editDiv.style.display = "flex"
-        }
-        else {
-            editDiv.style.display = "none"
-        }
-    }
+    document.getElementById("delete-div-title").addEventListener("click", function () {
+        toggleSection("delete-div", this);
+    });
 
-    // Hide and reveal delete list on click
-    document.getElementById("delete-div-title").addEventListener("click", hideShowDelete);
-
-    function hideShowDelete(){
-        var deletedDiv = document.getElementById("delete-div")
-        if (deletedDiv.style.display === "none" || deletedDiv.style.display === ""){
-            deletedDiv.style.display = "flex"
-        }
-        else {
-            deletedDiv.style.display = "none"
+    function toggleSection(divId, titleElement) {
+        var section = document.getElementById(divId);
+        if (section.style.display === "none" || section.style.display === "") {
+            section.style.display = "flex";
+            titleElement.classList.add("active");
+        } else {
+            section.style.display = "none";
+            titleElement.classList.remove("active");
         }
     }
 

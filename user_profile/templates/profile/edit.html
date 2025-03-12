@@ -19,3 +19,30 @@
 </div>
 
 {% endblock %}
+
+{% block postloadjs %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const slotsInput = document.getElementById("slots");
+
+        slotsInput.addEventListener("focus", function () {
+            if (this.value === "1") {
+                this.value = "";
+            }
+        });
+
+        slotsInput.addEventListener("blur", function () {
+            if (this.value === "" || this.value < 1) {
+                this.value = 1;
+            }
+        });
+
+        slotsInput.addEventListener("input", function () {
+            this.value = this.value.replace(/^1+/, "");
+            if (this.value === "") {
+                this.value = "1";
+            }
+        });
+    });
+</script>
+{% endblock %}

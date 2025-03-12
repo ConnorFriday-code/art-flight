@@ -23,12 +23,49 @@
     font-size: 28px;
 }
 
+/* General form container styling */
+#service-form {
+    width: 100%;
+    background-color: #6b5e49; /* Main background */
+    padding: 20px;
+    color: #e2e1e1; /* Text color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+/* Form title styling */
+#service-form-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #e2e1e1;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
 .form-options{
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: space-around;
-    width: 70%;
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e2e1e1;
+    margin-bottom: 5px;
+}
+
+.form-options h3{
+    text-align: center;
+    width: 100%;
+    margin: auto;
 }
 
 form div{
@@ -37,6 +74,34 @@ form div{
 
 label{
     padding: 5px 0;
+}
+
+#create-cancel-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#create-button{
+    text-decoration: none;
+    padding: 5px;
+    margin-top: 10px;
+    margin-right: 20px;
+    border: solid 2px #0c0c0c;
+    border-radius: 4px;
+    font-size: 24px;
+}
+
+#cancel-button{
+    color: #e2e1e1;
+    padding: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-left: 20px;
+    border: solid 2px #0c0c0c;
+    background-color: #b93131;
+    border-radius: 4px;
+    font-size: 24px;
 }
 
 .form-title{
@@ -76,13 +141,12 @@ label{
     transition: max-height 0.3s ease-out;
 }
 
-.toggle-title .arrow {
-    font-size: 14px;
+.title-style .arrow {
     display: inline-block;
     transition: transform 0.3s ease;
 }
 
-.toggle-title.active .arrow {
+.title-style.active .arrow {
     transform: rotate(180deg);
 }
 
@@ -129,7 +193,7 @@ h2{
 
 .service-card-subtitle{
     font-family: "Nokora", sans-serif;
-    font-weight: 300;
+    font-weight: 700;
     font-style: normal;
     font-size: 16px;
 }
