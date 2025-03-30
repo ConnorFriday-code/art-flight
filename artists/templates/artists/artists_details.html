@@ -8,7 +8,11 @@
 {% block content %}
     <div class="plate border">
         <div class="detail-div">
-            <p>Slots remaining: {{ artist.slots }}</p>
+            <h2 class="title">{{ artist.artist_name }}</h2>
+        </div>
+        <div class="detail-div">
+            <p>Slots open:</p>
+            <p>{{ artist.slots }}</p>
         </div>
         <div class="detail-div">
             {% if artist.image %}
@@ -18,18 +22,21 @@
             {% endif %}
         </div>
         <div class="detail-div">
-            <h2 class="title">{{ artist.artist_name }}</h2>
             <h3 class="details-mini-title">Description:</h3>
             <p>{{ artist.description }}</p>
         </div>
         <div id="preferences" class="detail-div">
             <div class="preference-mini-div">
                 <h3 class="details-mini-title">Do:</h3>
-                <p>{{ artist.dos }}</p>
+                <div class="details-preferences-divs">
+                    <p>{{ artist.dos }}</p>
+                </div>
             </div>
             <div class="preference-mini-div">
                 <h3 class="details-mini-title">Won't do:</h3>
-                <p>{{ artist.donts }}</p>
+                <div class="details-preferences-divs">
+                    <p>{{ artist.donts }}</p>
+                </div>
             </div>
         </div>
         <div class="detail-div">
@@ -37,15 +44,17 @@
                 {% csrf_token %}
                     <h3 class="details-mini-title">Commission details</h3>
                     <p>Choose a option and price for it:</p>
-                    <select id="commission-option" name="commission_option">
-                        {% for key, value in price.items %}
-                        <option value="{{ key }}">{{ key }} - £{{ value|floatformat:2 }}</option>
-                        {% endfor %}
-                    </select>
-                <textarea name="commission_details" placeholder="Please specify your order here..."></textarea>
+                    <div class="commission-details-div">
+                        <select id="commission-option" name="commission_option">
+                            {% for key, value in price.items %}
+                            <option value="{{ key }}">{{ key }} - £{{ value|floatformat:2 }}</option>
+                            {% endfor %}
+                        </select>
+                    <textarea name="commission_details" placeholder="Please specify your order here..." cols="40" rows="10"></textarea>
+                    </div>
                 <input type="hidden" name="artist_id" value="{{ artist.id }}">
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                <input type="submit" value="Place order!" class="yellow-bg">
+                <input type="submit" id="place-order-button" value="Place order!" class="yellow-bg">
             </form>
         </div>
 {% endblock %}

@@ -23,19 +23,17 @@
     font-size: 28px;
 }
 
-/* General form container styling */
 #service-form {
     width: 100%;
-    background-color: #6b5e49; /* Main background */
+    background-color: #6b5e49;
     padding: 20px;
-    color: #e2e1e1; /* Text color */
+    color: #e2e1e1;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
 }
 
-/* Form title styling */
 #service-form-title {
     text-align: center;
     font-size: 28px;
