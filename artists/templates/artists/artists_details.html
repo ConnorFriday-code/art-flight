@@ -7,54 +7,56 @@
 
 {% block content %}
     <div class="plate border">
-        <div class="detail-div">
-            <h2 class="title">{{ artist.artist_name }}</h2>
-        </div>
-        <div class="detail-div">
-            <p>Slots open:</p>
-            <p>{{ artist.slots }}</p>
-        </div>
-        <div class="detail-div">
-            {% if artist.image %}
-                <img src="{{ artist.image.url }}">
-            {% else %}
-                <p><i>No Image Submitted</i></p>
-            {% endif %}
-        </div>
-        <div class="detail-div">
-            <h3 class="details-mini-title">Description:</h3>
-            <p>{{ artist.description }}</p>
-        </div>
-        <div id="preferences" class="detail-div">
-            <div class="preference-mini-div">
-                <h3 class="details-mini-title">Do:</h3>
-                <div class="details-preferences-divs">
-                    <p>{{ artist.dos }}</p>
-                </div>
+        <div id="card">
+            <div class="detail-div">
+                <h2 class="title">{{ artist.artist_name }}</h2>
             </div>
-            <div class="preference-mini-div">
-                <h3 class="details-mini-title">Won't do:</h3>
-                <div class="details-preferences-divs">
-                    <p>{{ artist.donts }}</p>
-                </div>
+            <div class="detail-div">
+                <p>Slots open:</p>
+                <p>{{ artist.slots }}</p>
             </div>
-        </div>
-        <div class="detail-div">
-            <form id="commission-form" action="{% url 'add_to_bag' artist.id %}" method="POST">
-                {% csrf_token %}
-                    <h3 class="details-mini-title">Commission details</h3>
-                    <p>Choose a option and price for it:</p>
-                    <div class="commission-details-div">
-                        <select id="commission-option" name="commission_option">
-                            {% for key, value in price.items %}
-                            <option value="{{ key }}">{{ key }} - £{{ value|floatformat:2 }}</option>
-                            {% endfor %}
-                        </select>
-                    <textarea name="commission_details" placeholder="Please specify your order here..." cols="40" rows="10"></textarea>
+            <div class="detail-div">
+                {% if artist.image %}
+                    <img src="{{ artist.image.url }}">
+                {% else %}
+                    <p><i>No Image Submitted</i></p>
+                {% endif %}
+            </div>
+            <div class="detail-div">
+                <h3 class="details-mini-title">Description:</h3>
+                <p>{{ artist.description }}</p>
+            </div>
+            <div id="preferences" class="detail-div">
+                <div class="preference-mini-div">
+                    <h3 class="details-mini-title">Do:</h3>
+                    <div class="details-preferences-divs">
+                        <p>{{ artist.dos }}</p>
                     </div>
-                <input type="hidden" name="artist_id" value="{{ artist.id }}">
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                <input type="submit" id="place-order-button" value="Place order!" class="yellow-bg">
-            </form>
+                </div>
+                <div class="preference-mini-div">
+                    <h3 class="details-mini-title">Won't do:</h3>
+                    <div class="details-preferences-divs">
+                        <p>{{ artist.donts }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-div">
+                <form id="commission-form" action="{% url 'add_to_bag' artist.id %}" method="POST">
+                    {% csrf_token %}
+                        <h3 class="details-mini-title">Commission details</h3>
+                        <p>Choose a option and price for it:</p>
+                        <div class="commission-details-div">
+                            <select id="commission-option" name="commission_option">
+                                {% for key, value in price.items %}
+                                <option value="{{ key }}">{{ key }} - £{{ value|floatformat:2 }}</option>
+                                {% endfor %}
+                            </select>
+                        <textarea name="commission_details" placeholder="Please specify your order here..." cols="40" rows="10"></textarea>
+                        </div>
+                    <input type="hidden" name="artist_id" value="{{ artist.id }}">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    <input type="submit" id="place-order-button" value="Place order!" class="yellow-bg">
+                </form>
+            </div>
         </div>
 {% endblock %}
