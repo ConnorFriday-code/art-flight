@@ -51,7 +51,7 @@
                                 <option value="{{ key }}">{{ key }} - £{{ value|floatformat:2 }}</option>
                                 {% endfor %}
                             </select>
-                        <textarea name="commission_details" placeholder="Please specify your order here..." cols="40" rows="10"></textarea>
+                        <textarea name="commission_details" placeholder="Please specify your order here..." cols="40" rows="10" required></textarea>
                         </div>
                     <input type="hidden" name="artist_id" value="{{ artist.id }}">
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">

@@ -7,25 +7,31 @@
 
 {% block content %}
     <div class="plate border">
-        <div>
-            <h1>Your commissions:</h1>
+        <div id="bag-head-banner">
+            <h1 class="title">Your commissions:</h1>
         </div>
-        <div>
+        <div id="bag-contents-block">
             {% if bag_items %}
                 <div>
                     <table>
+                        {% for item in bag_items %}
                         <tr>
                             <th>Artist name:</th>
                             <th>Option:</th>
-                            <th>Commission details:</th>
-                            <th>Price:</th>
                         </tr>
-                        {% for item in bag_items %}
                         <tr>
                             <td class="artist-name">{{ item.artist_name }}</td>
                             <td class="option">{{ item.commission_option }}</td>
+                        </tr>
+                        <tr>
+                            <th>Commission details:</th>
+                            <th>Price:</th>
+                        </tr>
+                        <tr>
                             <td class="details">{{ item.details }}</td>
                             <td class="price">{{ item.price|floatformat:2 }}</td>
+                        </tr>
+                        <tr>
                             <td>
                                 <a href="{% url 'edit_bag' item.artist_id %}?details={{ item.details }}&bag_id={{ item.bag_id }}&commission_option={{ item.commission_option }}">
                                     <button type="button" class="modify-button" 
