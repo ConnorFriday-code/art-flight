@@ -12,29 +12,29 @@
         </div>
         <div id="bag-contents-block">
             {% if bag_items %}
-                <div>
-                    <table>
-                        {% for item in bag_items %}
+            {% for item in bag_items %}
+                <div class="bag-item-line">
+                    <table class="bag-item">
                         <tr>
-                            <th>Artist name:</th>
-                            <th>Option:</th>
+                            <th class="item-table-wide name-title title">Artist name:</th>
+                            <th class="item-centre">Option:</th>
                         </tr>
                         <tr>
-                            <td class="artist-name">{{ item.artist_name }}</td>
-                            <td class="option">{{ item.commission_option }}</td>
+                            <td class="artist-name item-table-wide">{{ item.artist_name }}</td>
+                            <td class="option item-centre">{{ item.commission_option }}</td>
                         </tr>
                         <tr>
-                            <th>Commission details:</th>
-                            <th>Price:</th>
+                            <th class="item-table-wide">Commission details:</th>
+                            <th class="item-centre">Price:</th>
                         </tr>
                         <tr>
-                            <td class="details">{{ item.details }}</td>
-                            <td class="price">{{ item.price|floatformat:2 }}</td>
+                            <td class="details item-table-wide bag-item-details">{{ item.details }}</td>
+                            <td class="price item-centre">{{ item.price|floatformat:2 }}</td>
                         </tr>
                         <tr>
                             <td>
                                 <a href="{% url 'edit_bag' item.artist_id %}?details={{ item.details }}&bag_id={{ item.bag_id }}&commission_option={{ item.commission_option }}">
-                                    <button type="button" class="modify-button" 
+                                    <button type="button" class="modify-button button" 
                                     data-artist_id="{{ item.artist_id }}" 
                                     data-details="{{ item.details }}"
                                     data-bag_id="{{ item.bag_id }}" >
@@ -42,34 +42,35 @@
                                     </button>
                                 </a>
                             </td>
-                            <td><button type="button" class="delete-button" data-bag_id="{{ item.bag_id }}">Delete</button></td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                    <table>
-                        <tr>
-                            <td>Bag total:</td>
-                            <td>£{{total|floatformat:2}}</td>
-                        </tr>
-                        <tr>
-                            <td>Delivery:</td>
-                            <td>£{{delivery|floatformat:2}}</td>
-                            {% if free_delivery_delta > 0 %}
-                            <td>You could get a free delivery if you spend <strong>£{{ free_delivery_delta|floatformat:2 }}</strong> more!</td>
-                            {% endif %}
-                        </tr>
-                        <tr>
-                            <td>Grand total:</td>
-                            <td>£{{grand_total|floatformat:2}}</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <a href="{% url 'artists' %}">Keep Shopping</a>
-                                <a href="{% url 'checkout' %}">Secure Checkout</a>
-                            </td>
+                            <td><button type="button" class="delete-button button" data-bag_id="{{ item.bag_id }}">Delete</button></td>
                         </tr>
                     </table>
+                    <hr>
                 </div>
+            {% endfor %}
+            <table>
+                <tr>
+                    <td>Bag total:</td>
+                    <td>£{{total|floatformat:2}}</td>
+                </tr>
+                <tr>
+                    <td>Delivery:</td>
+                    <td>£{{delivery|floatformat:2}}</td>
+                    {% if free_delivery_delta > 0 %}
+                    <td>You could get a free delivery if you spend <strong>£{{ free_delivery_delta|floatformat:2 }}</strong> more!</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Grand total:</td>
+                    <td>£{{grand_total|floatformat:2}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="{% url 'artists' %}" class="button">Keep Shopping</a>
+                        <a href="{% url 'checkout' %}" class="yellow-bg button">Secure Checkout</a>
+                    </td>
+                </tr>
+            </table>
             {% else %}
                 <h2>No commissions found!</h2>
                 <a href="{% url 'artists' %}">Do you want to find an artist?</a>
