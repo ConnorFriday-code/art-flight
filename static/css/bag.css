@@ -52,11 +52,19 @@
     overflow-y: auto;
 }
 
+#buttons-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+}
+
 .button{
     padding: 5px;
     text-decoration: none;
-    margin-top: 10px;
-    margin-left: 20px;
+    margin: 10px auto;
     border: solid 2px #0c0c0c;
     border-radius: 4px;
     font-size: 18px;
@@ -73,4 +81,10 @@
     color: #e2e1e1;
     border: solid 2px #0c0c0c;
     background-color: #6b5e49;
+}
+
+#no-items-div{
+    padding: 10px;
+    margin: auto;
+    text-align: center;
 }
