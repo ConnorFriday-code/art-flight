@@ -14,19 +14,35 @@
 
 {% block content %}
 
-<div class="border">
-  <h1 class="title">{% trans "Sign Up" %}</h1>
+<div id="allauth-main-box" class="border">
+  <div class="allauth-sub-box">
+    <h1 id="main-title" class="title">{% trans "Sign Up" %}</h1>
 
-  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button type="submit" class="border allauth-links">{% trans "Sign Up" %} &raquo;</button>
+    </form>
+  </div>
 
-  <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-    {% endif %}
-    <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-  </form>
+  <div class="allauth-sub-box allauth-spacing">
+    <div>
+      <strong>{% trans "Already a member?" %}</strong>
+        {% if user.is_authenticated %}
+        <a href="{% url 'account_email' %}">{% trans "Change Email" %}</a>
+        <a href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+        {% else %}
+        <div class="allauth-alt-options">
+          <a href="{% url 'account_login' %}" class="border allauth-links">{% trans "Sign In" %}</a>
+          <p>Or</p>
+          <a href="{% url 'home' %}">Return Back Home</a>
+        </div>
+        {% endif %}
+    </div>
+  </div>
 
 </div>
 
