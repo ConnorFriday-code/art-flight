@@ -45,11 +45,18 @@
 .name-title{
     font-size: 26px;
 }
+.bag-item{
+    padding: 10px;
+}
 
 .bag-item-details{
     height: 100px;
     align-content: start;
     overflow-y: auto;
+}
+
+.pad-left{
+    padding-left: 10px;
 }
 
 #buttons-container{
@@ -65,22 +72,26 @@
     padding: 5px;
     text-decoration: none;
     margin: 10px auto;
-    border: solid 2px #0c0c0c;
-    border-radius: 4px;
     font-size: 18px;
     cursor: pointer;
 }
 
-.delete-button{
-    color: #e2e1e1;
-    border: solid 2px #0c0c0c;
-    background-color: #b93131;
+.button:hover{
+    color: #6b5e49;
 }
 
-.modify-button{
+.checkout-btn:hover{
+    color: #0c0c0c;
+}
+
+.delete-button{
     color: #e2e1e1;
-    border: solid 2px #0c0c0c;
-    background-color: #6b5e49;
+    background-color: #C0392B;
+}
+
+.delete-button:hover{
+    color: #0c0c0c;
+    background-color: #ce4535;
 }
 
 #no-items-div{

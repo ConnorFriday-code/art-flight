@@ -34,7 +34,7 @@
                         <tr>
                             <td>
                                 <a href="{% url 'edit_bag' item.artist_id %}?details={{ item.details }}&bag_id={{ item.bag_id }}&commission_option={{ item.commission_option }}">
-                                    <button type="button" class="modify-button button" 
+                                    <button type="button" class="border button" 
                                     data-artist_id="{{ item.artist_id }}" 
                                     data-details="{{ item.details }}"
                                     data-bag_id="{{ item.bag_id }}" >
@@ -42,7 +42,7 @@
                                     </button>
                                 </a>
                             </td>
-                            <td><button type="button" class="delete-button button" data-bag_id="{{ item.bag_id }}">Delete</button></td>
+                            <td><button type="button" class="delete-button button border" data-bag_id="{{ item.bag_id }}">Delete</button></td>
                         </tr>
                     </table>
                     <hr>
@@ -50,24 +50,24 @@
             {% endfor %}
             <table>
                 <tr>
-                    <td class="item-table-wide">Bag total:</td>
+                    <td class="item-table-wide pad-left">Bag total:</td>
                     <td class="item-centre">£{{total|floatformat:2}}</td>
                 </tr>
                 <tr>
-                    <td class="item-table-wide">Delivery:</td>
+                    <td class="item-table-wide pad-left">Delivery:</td>
                     <td class="item-centre">£{{delivery|floatformat:2}}</td>
                     {% if free_delivery_delta > 0 %}
                     <td>You could get a free delivery if you spend <strong>£{{ free_delivery_delta|floatformat:2 }}</strong> more!</td>
                     {% endif %}
                 </tr>
                 <tr>
-                    <td class="item-table-wide">Grand total:</td>
+                    <td class="item-table-wide pad-left">Grand total:</td>
                     <td class="item-centre">£{{grand_total|floatformat:2}}</td>
                 </tr>
             </table>
             <div id="buttons-container">
-                <a href="{% url 'artists' %}" class="button">Keep Shopping</a>
-                <a href="{% url 'checkout' %}" class="yellow-bg button">Secure Checkout</a>
+                <a href="{% url 'artists' %}" class="border button">Keep Shopping</a>
+                <a href="{% url 'checkout' %}" class="yellow-bg border button checkout-btn">Secure Checkout</a>
             </div>
             {% else %}
             <div id="no-items-div">
