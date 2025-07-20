@@ -24,3 +24,7 @@
 .stripe-style-input::placeholder {
     color: #aab7c4;
 }
+
+.plate{
+  padding: 10px;
+}
