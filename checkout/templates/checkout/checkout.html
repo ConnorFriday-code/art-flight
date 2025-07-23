@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="plate border">
-        <h2 class="title">Checkout</h2>
+        <h2 class="title checkout-title">Checkout</h2>
         <div>
             <p>Please, fill out the form below:</p>
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
@@ -32,7 +32,7 @@
                             <input type="checkbox" id="id-save-info" name="save-info">
                         {% else %}
                             <label for="id-save-info">
-                                <a href="{% url 'account_signup' %}">Create aacount</a> or
+                                <a href="{% url 'account_signup' %}">Create an acount</a> or
                                 <a href="{% url 'account_login' %}">login</a> to save this information
                             </label>
                         {% endif %}
@@ -49,9 +49,13 @@
                     <input type="hidden" name="client_secret" value="{{ client_secret }}">
                 </fieldset>
                 <div>
-                    <a href="{% url 'bag' %}">Adjust bag</a>
-                    <button id="submit-button" >Complete Order</button>
-                    <p>Your card will be charged: <strong>£{{ grand_total|floatformat:2 }}</strong></p>
+                    <div>
+                        <p id="cost-message">Your card will be charged: <strong>£{{ grand_total|floatformat:2 }}</strong></p>
+                    </div>
+                    <div id="btn-container">
+                        <a href="{% url 'bag' %}" class="border edit-bag-btn">Adjust Bag</a>
+                        <button id="submit-button" class="yellow-bg border comp-order-btn">Complete Order</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -64,4 +68,12 @@
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'js/stripe_elements.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const flagImage = document.getElementById('flag_id_country');
+    if (flagImage) {
+        flagImage.remove();
+    }
+});
+    </script>
 {% endblock %}

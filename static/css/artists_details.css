@@ -1,17 +1,23 @@
 #card{
-    background-color: #6b5e49;
+    background-color: #e9e9e9;
     margin: auto;
     width: 80%;
 }
-
 .detail-div{
-    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 10px auto;
+}
+
+.artist-title{
+    background-color: #6b5e49;
     color: #e9e9e9;
+    width: 100%;
+    text-align: center;
+    font-size: 72px;
+    margin: 0;
 }
 
 .details-mini-title{
@@ -20,6 +26,9 @@
     font-style: normal;
     font-size: 24px;
     text-align: center;
+    background-color: #6b5e49;
+    color: #e9e9e9;
+    width: 100%;
 }
 
 #preferences{
@@ -31,7 +40,7 @@
 
 .preference-mini-div{
     margin: 0 auto;
-    width: 40%;
+    width: 45%;
 }
 
 .details-preferences-divs{
@@ -44,6 +53,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .commission-details-div{
@@ -76,5 +86,14 @@
 
     .detail-div h3{
         font-size: 16px;
+    }
+    
+    #preferences{
+        flex-direction: column;
+    }
+
+    .preference-mini-div{
+        margin: 0 auto;
+        width: 100%;
     }
 }
