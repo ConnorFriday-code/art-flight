@@ -51,6 +51,12 @@ button{
     background-color: rgba(0,0,0,0);
 }
 
+.errorlist{
+    color: #ec2222;
+    text-decoration: underline;
+    list-style: none;
+}
+
 @media only screen and (max-width: 600px){
     #allauth-main-box{
         display: flex;

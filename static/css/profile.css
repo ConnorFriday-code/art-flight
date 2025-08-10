@@ -1,7 +1,8 @@
 #profile-banner{
     width: 100%;
-    background-color: #0c0c0c;
+    background-color: #6b5e49;
     color: #e9e9e9;
+    font-size: 72px;
 }
 
 #profile-options{
@@ -25,9 +26,8 @@
 
 #service-form {
     width: 100%;
-    background-color: #6b5e49;
+    background-color: #e9e9e9;
     padding: 20px;
-    color: #e2e1e1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,9 +38,10 @@
     text-align: center;
     font-size: 28px;
     font-weight: bold;
-    color: #e2e1e1;
-    margin: auto;
+    background-color: #6b5e49;
+    color: #e9e9e9;
     margin-bottom: 20px;
+        width: 100%;
 }
 
 .form-options{
@@ -63,7 +64,7 @@ label {
 .form-options h3{
     text-align: center;
     width: 100%;
-    margin: auto;
+    margin: 0 auto 10px;
 }
 
 form div{
@@ -72,6 +73,9 @@ form div{
 
 label{
     padding: 5px 0;
+    width: 100%;
+    background-color: #6b5e49;
+    color: #e9e9e9;
 }
 
 #create-cancel-div{
@@ -102,12 +106,27 @@ label{
     font-size: 24px;
 }
 
+.delete-btn{
+    color: #e2e1e1;
+    background-color: #C0392B;
+    font-size: 18px;
+    margin: 10px auto;
+}
+
+.delete-btn:hover{
+    color: #0c0c0c;
+    background-color: #ce4535;
+}
+
 .form-title{
     font-family: "Nokora", sans-serif;
     font-weight: 700;
     font-style: normal;
     font-size: 24px;
     margin: 25px 0 5px;
+    width: 100%;
+    background-color: #6b5e49;
+    color: #e9e9e9;
 }
 
 #edit-div-title{
@@ -155,20 +174,11 @@ label{
     padding: 10px;
     border-radius: 5px;
     display: inline-block;
+    user-select: none;
 }
 
 .title-style:hover{
     background-color: #0c0c0c;
-}
-
-h3{
-    width: 80%;
-    max-width: 350px;
-}
-
-h2{
-    width: 80%;
-    max-width: 400px;
 }
 
 .service-card-cont{
@@ -197,6 +207,16 @@ h2{
 }
 
 @media only screen and (max-width: 600px){
+
+    h3{
+        width: 80%;
+        max-width: 350px;
+    }
+
+    h2{
+        width: 80%;
+        max-width: 400px;
+    }
     .service-card{
         width: 80%;
     }
