@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/orders.css' %}">
+{% endblock %}
+
 {% block content %}
-    <h2>Your Orders</h2>
-    <ul>
+<div class="plate border centre">
+    <h2 id="order-title">Your Orders</h2>
+    <ul id="order-list">
         {% for order in orders %}
-            <li>
+            <li class="order-item border">
                 <a href="{% url 'order_detail' order.order_number %}">
-                    Order #{{ order.order_number }} - {{ order.date|date:"Y-m-d" }}
+                    <p>Date: {{ order.date|date:"Y-m-d" }}</p>
+                    <p>Order number: #{{ order.order_number }}</p>
                 </a>
             </li>
         {% empty %}
             <p>You have no orders yet.</p>
         {% endfor %}
     </ul>
+</div>
+
 {% endblock %}
