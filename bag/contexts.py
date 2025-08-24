@@ -3,6 +3,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from user_profile.models import Artist
 
+
 def bag_contents(request):
 
     bag_items = []
@@ -36,12 +37,12 @@ def bag_contents(request):
 
     context = {
         'bag_items': bag_items,
-        'total' : total,
-        'product_count' : product_count,
-        'delivery' : delivery,
-        'free_delivery_delta' : free_delivery_delta,
-        'free_delivery_threshold' : settings.FREE_DELIVERY_THRESHOLD,
-        'grand_total' : grand_total,
+        'total': total,
+        'product_count': product_count,
+        'delivery': delivery,
+        'free_delivery_delta': free_delivery_delta,
+        'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+        'grand_total': grand_total,
     }
 
     return context

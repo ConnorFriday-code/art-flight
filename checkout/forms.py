@@ -2,15 +2,25 @@ from django import forms
 from django_countries.widgets import CountrySelectWidget
 from .models import Order
 
+
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('full_name', 'email', 'phone_number',
-                  'street_address1', 'street_address2',
-                  'town_or_city', 'postcode', 'country',
-                  'county',)
+        fields = (
+            'full_name',
+            'email',
+            'phone_number',
+            'street_address1',
+            'street_address2',
+            'town_or_city',
+            'postcode',
+            'country',
+            'county',
+        )
         widgets = {
-            'country': CountrySelectWidget(attrs={'class': 'stripe-style-input'}),
+            'country': CountrySelectWidget(
+                attrs={'class': 'stripe-style-input'}
+            ),
         }
 
     def __init__(self, *args, **kwargs):
@@ -19,11 +29,13 @@ class OrderForm(forms.ModelForm):
         labels and set autofocus on first field
         """
         super().__init__(*args, **kwargs)
-        
-        # Convert country field choices to a list to avoid the __len__ error
+
+        # Convert country field choices to avoid the __len__ error
         if 'country' in self.fields:
-            self.fields['country'].choices = list(self.fields['country'].choices)
-        
+            self.fields['country'].choices = list(
+                self.fields['country'].choices
+            )
+
         placeholders = {
             'full_name': 'Full Name',
             'email': 'Email Address',
@@ -37,7 +49,7 @@ class OrderForm(forms.ModelForm):
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            # Skip placeholder setting for the country field as it's handled by the widget
+            # Skip placeholder setting for the country field
             if field != 'country':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'
