@@ -1,0 +1,1 @@
+web: gunicorn art-flight.wsgi:application
