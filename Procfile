@@ -1,1 +1,1 @@
-web: gunicorn art-flight.wsgi:application
+web: gunicorn art_flight.wsgi:application
