@@ -30,11 +30,11 @@ class OrderForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
 
-        # Convert country field choices to avoid the __len__ error
         if 'country' in self.fields:
             self.fields['country'].choices = list(
                 self.fields['country'].choices
             )
+            self.fields['country'].empty_label = 'Select Country'
 
         placeholders = {
             'full_name': 'Full Name',
@@ -49,7 +49,6 @@ class OrderForm(forms.ModelForm):
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            # Skip placeholder setting for the country field
             if field != 'country':
                 if self.fields[field].required:
                     placeholder = f'{placeholders[field]} *'
