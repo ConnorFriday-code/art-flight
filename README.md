@@ -131,9 +131,39 @@ And now the test artist appears when using tag search:
 
 #### CRUD
 
+* Create
+    * Artist posts
+    * Shopping lists
+    * Accounts
+* Read
+    * Artist posts
+    * Basket list
+* Update
+    * Artist posts
+    * Basket quantity
+    * Basket item options
+* Delete
+    * Own artist posts
+    * Shopping list items
+    * Accounts
+
 #### Current features
 
+As of right now, the website can currently let users:
+
+* Create accounts
+* Search for artists by name, tags, and descriptions
+* Allow users to create their own posts/advertisments
+* Allow users to add items to baskets and comission artists 
+
 #### Features to be added
+
+In future updates, I would wish to add:
+
+* Artist approval before a user does a purchase/money transfer for their services
+* A "favourite" system inside the website itself, to help a user quick find their reguluar artists
+* A rating system for users to rate an artist
+* A report system to report scams and other issues
 
 #### Page speeds/lighthouse
 
@@ -145,8 +175,10 @@ And now the test artist appears when using tag search:
 
 * [lucid](https://lucid.app/) for creating the database logic chart
 * Google fonts for the fonts in the website:
-
     * [Nokora for titles](https://fonts.google.com/specimen/Nokora?preview.size=34&categoryFilters=Feeling:%2FExpressive%2FCalm&preview.text=Lorem%20ipsum%20dolor%20sit%20amet,%20consectetur%20adipiscing%20elit.%20Morbi%20sed%20lectus%20turpis.%20Sed%20ut%20nisl%20ac%20felis%20pellentesque%20aliquet.%20Proin%20eget%20ultrices%20lacus.%20Proin%20ac%20elit%20est.%20Donec%20non%20viverra%20magna.%20Vestibulum%20eget%20egestas%20nisl,%20at%20auctor%20nibh.%20Maecenas%20dapibus%20vel%20eros%20et%20ornare.%20)
     * [Roboto for general text](https://fonts.google.com/specimen/Roboto?preview.size=12&categoryFilters=Feeling:%2FExpressive%2FBusiness&preview.text=Lorem%20ipsum%20dolor%20sit%20amet,%20consectetur%20adipiscing%20elit.%20Morbi%20sed%20lectus%20turpis.%20Sed%20ut%20nisl%20ac%20felis%20pellentesque%20aliquet.%20Proin%20eget%20ultrices%20lacus.%20Proin%20ac%20elit%20est.%20Donec%20non%20viverra%20magna.%20Vestibulum%20eget%20egestas%20nisl,%20at%20auctor%20nibh.%20Maecenas%20dapibus%20vel%20eros%20et%20ornare.%20)
+* [Heroku](https://dashboard.heroku.com/) for hosting Art Flight
+* [AWS](https://eu-north-1.console.aws.amazon.com/console/home?region=eu-north-1#) for bucket and static file handling
 
 ### Thanks and acknowledgements
+Thank you to Code Institute for providing me with the tutorials I need to make these websites.
