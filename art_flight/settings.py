@@ -193,31 +193,18 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if 'USE_AWS' in os.environ:
-    print(">>> USE_AWS detected, configuring S3 storage...")
 
     AWS_STORAGE_BUCKET_NAME = 'art-flight-90b83d1ec001'
     AWS_S3_REGION_NAME = 'eu-north-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-    STATICFILES_LOCATION = 'static'
-    MEDIAFILES_LOCATION = 'media'
-
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-
+    MEDIAFILES_LOCATION = 'media'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-
-    print(f">>> AWS bucket: {AWS_STORAGE_BUCKET_NAME}")
-    print(f">>> AWS region: {AWS_S3_REGION_NAME}")
-    print(f">>> Static storage backend: {STATICFILES_STORAGE}")
-    print(f">>> Media storage backend: {DEFAULT_FILE_STORAGE}")
-    print(f">>> STATIC_URL = {STATIC_URL}")
-    print(f">>> MEDIA_URL = {MEDIA_URL}")
-else:
-    print(">>> USE_AWS not set, using local staticfiles")
 
 # stripe
 FREE_DELIVERY_THRESHOLD = 20
@@ -227,5 +214,3 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 DEFAULT_FROM_EMAIL = 'artflight@example.com'
-
-print(">>> STATICFILES_STORAGE =", STATICFILES_STORAGE if 'USE_AWS' in os.environ else "local")
