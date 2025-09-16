@@ -193,6 +193,9 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if 'USE_AWS' in os.environ:
+
+    print(f">>> [DEBUG] AWS_ACCESS_KEY_ID = {AWS_ACCESS_KEY_ID}")
+    print(f">>> [DEBUG] AWS_SECRET_ACCESS_KEY starts with = {str(AWS_SECRET_ACCESS_KEY)[:4] if AWS_SECRET_ACCESS_KEY else None}")
     print(">>> [DEBUG] USE_AWS is set. Configuring S3...")
 
     AWS_STORAGE_BUCKET_NAME = 'art-flight-90b83d1ec001'
