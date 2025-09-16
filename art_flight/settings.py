@@ -219,8 +219,8 @@ if 'USE_AWS' in os.environ:
     except Exception as e:
         print(">>> [DEBUG] FAIL: could not import custom_storages:", e)
 
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    STATICFILES_STORAGE = 'art-flight.custom_storages.StaticStorage'
+    DEFAULT_FILE_STORAGE = 'art-flight.custom_storages.MediaStorage'
 
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
