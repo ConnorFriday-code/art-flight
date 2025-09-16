@@ -209,6 +209,15 @@ if 'USE_AWS' in os.environ:
     STATICFILES_LOCATION = 'static'
     MEDIAFILES_LOCATION = 'media'
 
+    print(">>> [DEBUG] sys.path =", sys.path)
+    print(">>> [DEBUG] CWD =", os.getcwd())
+
+    try:
+        import art_flight.custom_storages
+        print(">>> [DEBUG] SUCCESS: custom_storages is importable")
+    except Exception as e:
+        print(">>> [DEBUG] FAIL: could not import custom_storages:", e)
+
     STATICFILES_STORAGE = 'art_flight.custom_storages.StaticStorage'
     DEFAULT_FILE_STORAGE = 'art_flight.custom_storages.MediaStorage'
 
