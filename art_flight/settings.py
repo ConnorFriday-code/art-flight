@@ -261,14 +261,8 @@ if os.environ.get('USE_AWS'):
 
     # Recommend using fully-qualified module path for STATICFILES_STORAGE to avoid ambiguity.
     # You can temporarily override the exact string via env var STATICFILES_STORAGE_OVERRIDE
-    STATICFILES_STORAGE = os.environ.get(
-        'STATICFILES_STORAGE_OVERRIDE',
-        'art_flight.custom_storages.StaticStorage'
-    )
-    DEFAULT_FILE_STORAGE = os.environ.get(
-        'DEFAULT_FILE_STORAGE_OVERRIDE',
-        'art_flight.custom_storages.MediaStorage'
-    )
+    STATICFILES_STORAGE = "custom_storages.StaticStorage"
+    DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"
 
     print(f">>> [DEBUG] STATICFILES_STORAGE (setting) = {STATICFILES_STORAGE}")
     print(f">>> [DEBUG] DEFAULT_FILE_STORAGE (setting) = {DEFAULT_FILE_STORAGE}")
