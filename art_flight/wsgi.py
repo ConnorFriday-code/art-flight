@@ -9,9 +9,6 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 
 import os
 
-import sys, os
-print(">>> WSGI loading, sys.path:", sys.path, file=sys.stderr)
-
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'art_flight.settings')
