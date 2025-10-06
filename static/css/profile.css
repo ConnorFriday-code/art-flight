@@ -118,6 +118,10 @@ label{
     background-color: #ce4535;
 }
 
+.li-100-width{
+    width: 100%;
+}
+
 .form-title{
     font-family: "Nokora", sans-serif;
     font-weight: 700;

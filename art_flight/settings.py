@@ -1,12 +1,15 @@
 import os
 import sys
 import dj_database_url
-# Purpose: step-by-step debug prints so we can tell exactly what succeeds/fails
 import importlib
 import traceback
-import inspect
+
 if os.path.isfile('env.py'):
     import env
+
+from pathlib import Path
+
+print(">>> [DEBUG CHECK] Django DEBUG is set to:", os.environ.get("DEBUG"))
 
 """
 Django settings for art_flight project.
@@ -20,7 +23,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -196,101 +199,26 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ---------- BEGIN S3 DEBUG BLOCK ----------
-
+# --- AWS S3 configuration ---
 if os.environ.get('USE_AWS'):
-    print(">>> [DEBUG] USE_AWS is set. Configuring S3...")
 
-    # Basic bucket + region (these are safe to print)
     AWS_STORAGE_BUCKET_NAME = 'art-flight-90b83d1ec001'
     AWS_S3_REGION_NAME = 'eu-north-1'
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    print(f">>> [DEBUG] Bucket: {AWS_STORAGE_BUCKET_NAME}")
-    print(f">>> [DEBUG] Region: {AWS_S3_REGION_NAME}")
 
-    # Credentials: DO NOT print values, only whether they exist
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    print(">>> [DEBUG] AWS_ACCESS_KEY_ID present?:", bool(AWS_ACCESS_KEY_ID))
-    print(">>> [DEBUG] AWS_SECRET_ACCESS_KEY present?:", bool(AWS_SECRET_ACCESS_KEY))
 
-    # Locations used by your storage classes
     STATICFILES_LOCATION = 'static'
     MEDIAFILES_LOCATION = 'media'
-    print(f">>> [DEBUG] STATICFILES_LOCATION = {STATICFILES_LOCATION!r}")
-    print(f">>> [DEBUG] MEDIAFILES_LOCATION = {MEDIAFILES_LOCATION!r}")
 
-    # Environment / filesystem context (helpful for import resolution)
-    print(">>> [DEBUG] sys.path =", sys.path)
-    print(">>> [DEBUG] CWD =", os.getcwd())
+    # S3 storage backends
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
-    # --- Try importing custom_storages using multiple paths ---
-    # Sometimes module path should include the app package (art_flight.custom_storages).
-    tried_paths = ['custom_storages', 'art_flight.custom_storages']
-    imported_mod = None
-    for mpath in tried_paths:
-        try:
-            m = importlib.import_module(mpath)
-            print(f">>> [DEBUG] Imported module '{mpath}' -> {m}")
-            # Check whether expected classes exist
-            has_static = hasattr(m, 'StaticStorage')
-            has_media = hasattr(m, 'MediaStorage')
-            print(f">>> [DEBUG] Module '{mpath}' has StaticStorage?: {has_static}, MediaStorage?: {has_media}")
-            if has_static:
-                cls = getattr(m, 'StaticStorage')
-                print(f">>> [DEBUG] StaticStorage is a class?: {inspect.isclass(cls)}")
-                # try to verify it's a subclass of S3Boto3Storage (if importable)
-                try:
-                    from storages.backends.s3boto3 import S3Boto3Storage
-                    is_sub = issubclass(cls, S3Boto3Storage)
-                    print(f">>> [DEBUG] StaticStorage subclass of S3Boto3Storage?: {is_sub}")
-                except Exception as e:
-                    print(">>> [DEBUG] Could not import/compare S3Boto3Storage:", e)
-            imported_mod = m
-            # stop on first successful import
-            break
-        except Exception as e:
-            print(f">>> [DEBUG] Import failed for '{mpath}': {e}")
-            traceback.print_exc()
-
-    if not imported_mod:
-        print(">>> [DEBUG] Could not import custom_storages using any tested module path. CHECK FILE LOCATION AND REPO.")
-    else:
-        print(">>> [DEBUG] custom_storages import appears OK from build-time check.")
-
-    # Recommend using fully-qualified module path for STATICFILES_STORAGE to avoid ambiguity.
-    # You can temporarily override the exact string via env var STATICFILES_STORAGE_OVERRIDE
-    STATICFILES_STORAGE = "custom_storages.StaticStorage"
-    DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"
-
-    print(f">>> [DEBUG] STATICFILES_STORAGE (setting) = {STATICFILES_STORAGE}")
-    print(f">>> [DEBUG] DEFAULT_FILE_STORAGE (setting) = {DEFAULT_FILE_STORAGE}")
-
-    # Construct public URLs for static/media (safe to print)
+    # URL paths for assets
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-    print(f">>> [DEBUG] STATIC_URL = {STATIC_URL}")
-    print(f">>> [DEBUG] MEDIA_URL = {MEDIA_URL}")
-
-    # Optional strict check: set AWS_STRICT=1 to raise if the final backend is not a subclass of S3Boto3Storage
-    if os.environ.get('AWS_STRICT') == '1':
-        print(">>> [DEBUG] AWS_STRICT enabled: verifying STATICFILES_STORAGE resolves to S3Boto3Storage subclass")
-        try:
-            mod_name, cls_name = STATICFILES_STORAGE.rsplit('.', 1)
-            mod = importlib.import_module(mod_name)
-            cls = getattr(mod, cls_name)
-            from storages.backends.s3boto3 import S3Boto3Storage
-            if not issubclass(cls, S3Boto3Storage):
-                raise RuntimeError("STATICFILES_STORAGE backend is not a subclass of S3Boto3Storage")
-            print(">>> [DEBUG] AWS_STRICT check passed: backend is S3Boto3Storage subclass")
-        except Exception as e:
-            print(">>> [DEBUG] AWS_STRICT check failed:", e)
-            traceback.print_exc()
-            # Re-raise to fail early (comment out if you don't want deploy to fail)
-            raise
-else:
-    print(">>> [DEBUG] USE_AWS not set. Using local static/media.")
-# ---------- END S3 DEBUG BLOCK ----------
 
 # stripe
 FREE_DELIVERY_THRESHOLD = 20
