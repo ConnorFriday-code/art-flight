@@ -1,15 +1,9 @@
 import os
-import sys
 import dj_database_url
-import importlib
-import traceback
-
 if os.path.isfile('env.py'):
     import env
 
 from pathlib import Path
-
-print(">>> [DEBUG CHECK] Django DEBUG is set to:", os.environ.get("DEBUG"))
 
 """
 Django settings for art_flight project.
