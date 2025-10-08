@@ -220,6 +220,9 @@ if os.environ.get('USE_AWS'):
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
+if os.environ.get("DEBUG") == "True":
+    INTERNAL_IPS = ["127.0.0.1", "10.0.2.2", "10.0.0.0/8"]
+
 # stripe
 FREE_DELIVERY_THRESHOLD = 20
 STANDARD_DELIVERY_PERCENTAGE = 10

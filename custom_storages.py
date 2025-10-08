@@ -1,12 +1,6 @@
-# custom_storages.py (debugged)
 from django.conf import settings
 from storages.backends.s3boto3 import S3Boto3Storage
 import traceback
-
-# Module-level trace: executed when Python imports this module
-print(">>> [DEBUG] custom_storages.py loaded")
-print(">>> [DEBUG] At import: STATICFILES_LOCATION =", getattr(settings, 'STATICFILES_LOCATION', None))
-print(">>> [DEBUG] At import: MEDIAFILES_LOCATION =", getattr(settings, 'MEDIAFILES_LOCATION', None))
 
 
 class StaticStorage(S3Boto3Storage):
