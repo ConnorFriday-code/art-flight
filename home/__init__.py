@@ -1,1 +1,1 @@
-default_app_config = "home.apps.UserProfileConfig"
+default_app_config = "home.apps.HomeConfig"
