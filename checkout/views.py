@@ -8,11 +8,16 @@ from django.shortcuts import (
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.shortcuts import get_object_or_404, render
+
+from .models import Order
+from user_profile.forms import UserProfileForm
 from .models import Order, OrderLineItem
 from .forms import OrderForm
 from bag.contexts import bag_contents
 from user_profile.models import Artist, UserProfile
-from user_profile.forms import UserProfileForm
 
 import stripe
 import json
@@ -159,13 +164,9 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
+    # --- 1️⃣ Link order to profile if authenticated ---
     if request.user.is_authenticated:
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
-        order.user_profile = profile
-        order.save()
-
-    if request.user.is_authenticated:
-        profile = UserProfile.objects.get(user=request.user)
         order.user_profile = profile
         order.save()
 
@@ -179,18 +180,36 @@ def checkout_success(request, order_number):
                 'default_street_address2': order.street_address2,
                 'default_county': order.county,
             }
-            user_profile_form = UserProfileForm(
-                profile_data,
-                instance=profile,
-            )
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
+    # --- 2️⃣ Send order confirmation email ---
+    subject = f"Order Confirmation - {order.order_number}"
+    body = render_to_string(
+        "emails/order_confirmation.html",  # or reuse checkout_success.html
+        {
+            "order": order,
+            "contact_email": settings.DEFAULT_FROM_EMAIL,
+            "user": request.user,
+        },
+    )
+
+    send_mail(
+        subject,
+        "",  # plain-text body left blank
+        settings.DEFAULT_FROM_EMAIL,
+        [order.email],
+        html_message=body,
+        fail_silently=False,
+    )
+
+    # --- 3️⃣ Show success message & clear bag ---
     messages.success(
         request,
         (
             f"Order successfully processed! Your order number is "
-            f"{order_number}. A confirmation email will be sent to "
+            f"{order_number}. A confirmation email has been sent to "
             f"{order.email}."
         ),
     )
@@ -198,8 +217,7 @@ def checkout_success(request, order_number):
     if 'bag' in request.session:
         del request.session['bag']
 
-    template = 'checkout/checkout_success.html'
-    context = {
-        'order': order,
-    }
+    # --- 4️⃣ Render the success page ---
+    template = "checkout/checkout_success.html"
+    context = {"order": order}
     return render(request, template, context)

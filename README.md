@@ -147,6 +147,8 @@ And now the test artist appears when using tag search:
     * Shopping list items
     * Accounts
 
+To find evidence, please visit the CRUD.md file [here](CRUD.md).
+
 #### Current features
 
 As of right now, the website can currently let users:
