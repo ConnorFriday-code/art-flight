@@ -1,13 +1,13 @@
 | **CRUD Operation** | **Feature**         | **Image Evidence**      | **Explanation**                                            |
 | ------------------ | ------------------- | ----------------------- | ---------------------------------------------------------- |
-| **Create**         | Artist posts        | ![image](path/to/image) | Demonstrates form submission creating a new artist post.   |
-|                    | Shopping lists      | ![image](path/to/image) | Shows user creating a new shopping list entry.             |
-|                    | Accounts            | ![image](path/to/image) | Displays user registration process creating an account.    |
-| **Read**           | Artist posts        | ![image](path/to/image) | Shows retrieval/display of existing artist posts.          |
-|                    | Basket list         | ![image](path/to/image) | Demonstrates reading basket contents from database.        |
-| **Update**         | Artist posts        | ![image](path/to/image) | Displays post-editing interface updating artist post data. |
-|                    | Basket quantity     | ![image](path/to/image) | Shows modification of item quantities in basket.           |
-|                    | Basket item options | ![image](path/to/image) | Demonstrates updating options (like size/color) in basket. |
-| **Delete**         | Own artist posts    | ![image](path/to/image) | Displays removal of user’s own artist post.                |
-|                    | Shopping list items | ![image](path/to/image) | Shows deletion of an item from the shopping list.          |
-|                    | Accounts            | ![image](path/to/image) | Demonstrates user account deletion process.                |
+| **Create**         | Artist posts        | ![image](readme_assets/crud/c-create-service.png) | Users can create a new artist posts to advertise their services   |
+|                    | Accounts            | ![image](readme_assets/crud/c-create-account.png) | Users can create their own accounts    |
+|                    | Commissions         | ![image](readme_assets/crud/c-add-to-basket.png) | Users can create Commissions to add to their basket    |
+| **Read**           | Artist posts        | ![image]() | Users can find and read their posts on the main artist page          |
+|                    | Basket list         | ![image]() | Users can view and read their basket at any time        |
+|                    | Past orders         | ![image]() | Users can view and read their pasts orders from their profile page       |
+| **Update**         | Artist posts        | ![image]() | Users can edit and save changes to their artist posts from the user profile section |
+|                    | Basket quantity     | ![image]() | Users can add or remove items from their basket        |
+|                    | Basket item options | ![image]() | Users can edit the price options and details for items in their basket |
+| **Delete**         | Own artist posts    | ![image]() | Users can delete their own artist posts               |
+|                    | Basket list items   | ![image]() | Users can remove items from their basket       |

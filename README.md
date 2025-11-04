@@ -127,6 +127,14 @@ And now the test artist appears when using tag search:
 
 #### Heroku
 
+#### Amazon Web Services
+
+#### Turning off debug
+
+Once testing and alterations were finished, I set debug, located in Heroku, to off/False.
+
+![Debug set to off/False in Heroku config](readme_assets/final_product/debug-off.png)
+
 ### Features
 
 #### CRUD
