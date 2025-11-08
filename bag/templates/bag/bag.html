@@ -32,7 +32,7 @@
                             <td class="price item-centre">{{ item.price|floatformat:2 }}</td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="bag-mod-padding">
                                 <a href="{% url 'edit_bag' item.artist_id %}?details={{ item.details }}&bag_id={{ item.bag_id }}&commission_option={{ item.commission_option }}">
                                     <button type="button" class="border button" 
                                     data-artist_id="{{ item.artist_id }}" 
@@ -42,7 +42,9 @@
                                     </button>
                                 </a>
                             </td>
-                            <td><button type="button" class="delete-button button border" data-bag_id="{{ item.bag_id }}">Delete</button></td>
+                            <td class="bag-del-centre">
+                                <button type="button" class="delete-button button border" data-bag_id="{{ item.bag_id }}">Delete</button>
+                            </td>
                         </tr>
                     </table>
                     <hr>
