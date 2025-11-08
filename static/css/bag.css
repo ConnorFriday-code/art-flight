@@ -69,7 +69,7 @@
 .button{
     padding: 5px;
     text-decoration: none;
-    margin: 10px auto;
+    margin: 10px 0;
     font-size: 18px;
     cursor: pointer;
     background-color: #e9e9e9;;
@@ -97,4 +97,21 @@
     padding: 10px;
     margin: auto;
     text-align: center;
+}
+
+#edit-bag-form{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+
+.edit-bag-label{
+    margin: 10px;
+}
+
+#edit-form-buttons{
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
 }

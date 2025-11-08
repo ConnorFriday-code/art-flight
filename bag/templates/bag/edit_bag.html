@@ -7,26 +7,28 @@
 
 {% block content %}
     <div class="plate border">
-        <h1>Edit Your Order for {{ artist.artist_name }}</h1>
-        <form method="post" action="{% url 'edit_bag' artist.id %}">
+        <div id="bag-head-banner">
+            <h1 class="title">Edit Your Order for {{ artist.artist_name }}</h1>
+        </div>
+        <form id="edit-bag-form" method="post" action="{% url 'edit_bag' artist.id %}">
             {% csrf_token %}
             <input type="hidden" name="bag_id" value="{{ bag_id }}">
             <input type="hidden" name="details" value="{{ details }}">
             <input type="hidden" name="current_option" value="{{ commission_option }}">
         
-            <label for="commission-option">Edit Price/Options</label>
+            <label class="edit-bag-label" for="commission-option">Edit Price/Options</label>
             <select id="commission-option" name="commission_option" required>
                 {% for key, value in price.items %}
                 <option value="{{ key }}" {% if key == commission_option %}selected{% endif %}>{{ key }} - £{{ value }}</option>
                 {% endfor %}
             </select>
         
-            <label>Edit details</label>
+            <label class="edit-bag-label">Edit details</label>
             <textarea name="edit_details" id="edit-details" required>{{ details }}</textarea>
         
             <div id="edit-form-buttons">
-                <button type="submit">Confirm Edit</button>
-                <a href="{% url 'bag' %}"><button type="button">Cancel Edit</button></a>
+                <button class="border button" type="submit">Confirm Edit</button>
+                <a href="{% url 'bag' %}" class="delete-button button border"><button type="button">Cancel Edit</button></a>
             </div>
         </form>
     </div>
