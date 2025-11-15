@@ -121,9 +121,20 @@ And now the test artist appears when using tag search:
 
 ## Final product
 
-### Uploading product
+### Uploading/deploying product
 
 #### Github
+
+Firstly, I needed created a requirements.txt file to list all dependencies required for the site to run properly. This is done by entering the following in the terminal:
+
+    pip freeze --local > requirements.txt
+
+Then, I needed to create a Procfile to specify to Heroku how to start the site. Creating the file, I filled it with this: release: 
+
+    python manage.py collectstatic --noinput
+    web: gunicorn art_flight.wsgi
+
+Once these two were done, I added, commited, and pushed it to github.
 
 #### Heroku
 
