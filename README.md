@@ -138,7 +138,38 @@ Once these two were done, I added, commited, and pushed it to github.
 
 #### Heroku
 
+The first step was to create a new app called art flight:
+
+![New app button on Heroku](readme_assets/final_product/heroku-new-app.png)
+
+Next, I had to set up my config Variables, including turning off collect static in preparation for deployment to AWS:
+
+![Config Var keys on Heroku](readme_assets/final_product/config-values-setup.png)
+
+After that, I had to connect my Heroku up with my Github repository and deploy to Heroku:
+
+![Deploy button on Heroku](readme_assets/final_product/deploy-main-branch.png)
+
+Then ended it off by opening the Heroku console and applying any and all database migrations:
+
+    python manage.py makemigrations
+    python manage.py migrate
+
 #### Amazon Web Services
+
+I needed AWS to store static and media files.
+
+The first step was to create a s3 bucket and a IAM user. Afterwards, I needed to assign a policy granting full access, then add these to my Heroku Config Vars:
+
+![Config Var keys on Heroku](readme_assets/final_product/config-values-setup.png)
+
+Then I had to go back to my website/code and add boto3 django-storage with:
+
+    pip install boto3 django-storages
+
+Then in my settings.py, told it to use S3 as the default storage, and created custom_storages.py to handle locations.
+
+Once this was all done, I updated, pushed, and redeplyed the updated code.
 
 #### Turning off debug
 
@@ -147,6 +178,24 @@ Once testing and alterations were finished, I set debug, located in Heroku, to o
 ![Debug set to off/False in Heroku config](readme_assets/final_product/debug-off.png)
 
 ### Features
+
+#### Current features
+
+As of right now, the website can currently let users:
+
+* Create accounts
+* Search for artists by name, tags, and descriptions
+* Allow users to create their own posts/advertisments
+* Allow users to add items to baskets and comission artists 
+
+#### Features to be added
+
+In future updates, I would wish to add:
+
+* Artist approval before a user does a purchase/money transfer for their services
+* A "favourite" system inside the website itself, to help a user quick find their reguluar artists
+* A rating system for users to rate an artist
+* A report system to report scams and other issues
 
 #### CRUD
 
@@ -168,25 +217,9 @@ Once testing and alterations were finished, I set debug, located in Heroku, to o
 
 To find evidence, please visit the CRUD.md file [here](CRUD.md).
 
-#### Current features
-
-As of right now, the website can currently let users:
-
-* Create accounts
-* Search for artists by name, tags, and descriptions
-* Allow users to create their own posts/advertisments
-* Allow users to add items to baskets and comission artists 
-
-#### Features to be added
-
-In future updates, I would wish to add:
-
-* Artist approval before a user does a purchase/money transfer for their services
-* A "favourite" system inside the website itself, to help a user quick find their reguluar artists
-* A rating system for users to rate an artist
-* A report system to report scams and other issues
-
 #### Page speeds/lighthouse
+
+To find all lighthouse reports for the website, follow this [link](lighthouse.md).
 
 ## Technology used
 
