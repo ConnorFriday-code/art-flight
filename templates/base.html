@@ -173,12 +173,14 @@
 
     <footer id="footer">
         <div class="margin footer-div">
-            Copyright blurb
+            Website belongs to Connor F. Fonts belong to google.
         </div>
         <div class="margin footer-div">
             <h4>Links</h4>
             <ul id="footer-links">
-                <li><a href="{% url 'home' %}">home</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url '{% url 'artists' %}' %}">Artist Page</a></li>
+                <li><a href="{% url '{% url 'bag' %}' %}">Basket</a></li>
             </ul>
         </div>
     </footer>

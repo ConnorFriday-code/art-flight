@@ -4,6 +4,8 @@ Where your art career takes flight!
 
 Link to live website:
 
+https://art-flight-90b83d1ec001.herokuapp.com/
+
 # UX
 
 ## Goals and Targets
@@ -196,6 +198,7 @@ In future updates, I would wish to add:
 * A "favourite" system inside the website itself, to help a user quick find their reguluar artists
 * A rating system for users to rate an artist
 * A report system to report scams and other issues
+* For commissions remaining number to automatically go down once an artist accepts a commission
 
 #### CRUD
 
@@ -218,6 +221,8 @@ In future updates, I would wish to add:
 To find evidence, please visit the CRUD.md file [here](CRUD.md).
 
 #### Page speeds/lighthouse
+
+Upon testing with lighthouse, all pages meet at least 90% on P.A.B.S., except for accessibility. This is mostly due to my navigation bar, with lighthouse finding problems with sequential ordering and layout. Unless I redesign the navigation bar in a way that lighthouse approves, I can not fix this.
 
 To find all lighthouse reports for the website, follow this [link](lighthouse.md).
 
