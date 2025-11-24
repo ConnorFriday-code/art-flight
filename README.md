@@ -230,14 +230,22 @@ To find all lighthouse reports for the website, follow this [link](lighthouse.md
 
 ### Languages
 
-### Code, media, frameworks, libraries, and programs used
+* [HTML](https://en.wikipedia.org/wiki/HTML5)
+* [CSS3](https://en.wikipedia.org/wiki/CSS#CSS_3)
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+* [Python](https://www.python.org/)
 
+### Code, media, frameworks, libraries, and programs used
+* [Git](https://git-scm.com/) and [Github](https://github.com/) for version control and repository 
+* [DJANGO](https://docs.djangoproject.com/en/4.1/releases/3.2/) for framework
 * [lucid](https://lucid.app/) for creating the database logic chart
 * Google fonts for the fonts in the website:
     * [Nokora for titles](https://fonts.google.com/specimen/Nokora?preview.size=34&categoryFilters=Feeling:%2FExpressive%2FCalm&preview.text=Lorem%20ipsum%20dolor%20sit%20amet,%20consectetur%20adipiscing%20elit.%20Morbi%20sed%20lectus%20turpis.%20Sed%20ut%20nisl%20ac%20felis%20pellentesque%20aliquet.%20Proin%20eget%20ultrices%20lacus.%20Proin%20ac%20elit%20est.%20Donec%20non%20viverra%20magna.%20Vestibulum%20eget%20egestas%20nisl,%20at%20auctor%20nibh.%20Maecenas%20dapibus%20vel%20eros%20et%20ornare.%20)
     * [Roboto for general text](https://fonts.google.com/specimen/Roboto?preview.size=12&categoryFilters=Feeling:%2FExpressive%2FBusiness&preview.text=Lorem%20ipsum%20dolor%20sit%20amet,%20consectetur%20adipiscing%20elit.%20Morbi%20sed%20lectus%20turpis.%20Sed%20ut%20nisl%20ac%20felis%20pellentesque%20aliquet.%20Proin%20eget%20ultrices%20lacus.%20Proin%20ac%20elit%20est.%20Donec%20non%20viverra%20magna.%20Vestibulum%20eget%20egestas%20nisl,%20at%20auctor%20nibh.%20Maecenas%20dapibus%20vel%20eros%20et%20ornare.%20)
 * [Heroku](https://dashboard.heroku.com/) for hosting Art Flight
 * [AWS](https://eu-north-1.console.aws.amazon.com/console/home?region=eu-north-1#) for bucket and static file handling
+* [Stripe](https://stripe.com/gb) to implement and test payment processing
+* [ChatGPT](https://chatgpt.com) to generate the site logo copyright free
 
 ### Thanks and acknowledgements
 Thank you to Code Institute for providing me with the tutorials I need to make these websites.
