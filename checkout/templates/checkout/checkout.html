@@ -9,6 +9,7 @@
     <div class="plate border">
         <h2 class="title checkout-title">Checkout</h2>
         <div>
+            <!-- Form asking for payment details, billing address, and email -->
             <p>Please, fill out the form below:</p>
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
@@ -27,6 +28,7 @@
                     {{ order_form.street_address2 }}
                     {{ order_form.county }}
                     <div>
+                        <!-- Offers user to save delivery information -->
                         {% if user.is_authenticated %}
                             <label for="id-save-info">Save this delivery information to my profile</label>
                             <input type="checkbox" id="id-save-info" name="save-info">

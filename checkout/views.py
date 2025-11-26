@@ -10,11 +10,9 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from django.shortcuts import get_object_or_404, render
-
 from .models import Order
 from user_profile.forms import UserProfileForm
-from .models import Order, OrderLineItem
+from .models import OrderLineItem
 from .forms import OrderForm
 from bag.contexts import bag_contents
 from user_profile.models import Artist, UserProfile
@@ -164,7 +162,7 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
-    # --- 1️⃣ Link order to profile if authenticated ---
+    # Link order to profile if authenticated
     if request.user.is_authenticated:
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         order.user_profile = profile
@@ -184,7 +182,7 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    # --- 2️⃣ Send order confirmation email ---
+    # Send order confirmation email
     subject = f"Order Confirmation - {order.order_number}"
     body = render_to_string(
         "emails/order_confirmation.html",  # or reuse checkout_success.html
@@ -204,7 +202,7 @@ def checkout_success(request, order_number):
         fail_silently=False,
     )
 
-    # --- 3️⃣ Show success message & clear bag ---
+    # --- Show success message & clear bag ---
     messages.success(
         request,
         (
@@ -217,7 +215,7 @@ def checkout_success(request, order_number):
     if 'bag' in request.session:
         del request.session['bag']
 
-    # --- 4️⃣ Render the success page ---
+    # Render the success page
     template = "checkout/checkout_success.html"
     context = {"order": order}
     return render(request, template, context)

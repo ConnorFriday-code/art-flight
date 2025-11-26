@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
   <body style="font-family: Arial, sans-serif; color: #333;">
+    <!-- Email message -->
     <h2>Thank you for your order, {{ order.full_name }}!</h2>
     <p>Your order number is <strong>{{ order.order_number }}</strong>.</p>
 
     <h3>Order Summary</h3>
     <ul>
+      <!-- Loop through all items, listing artist, details, and prices -->
       {% for item in order.lineitems.all %}
+        <li>{{ item.artist }}</li>
         <li>{{ item.commission_option }} — £{{ item.price }}</li>
       {% endfor %}
     </ul>
 
+    <!-- List final total -->
     <p><strong>Total:</strong> £{{ order.grand_total }}</p>
 
-    <p>We’ll be in touch soon.  
-    If you have any questions, contact us at {{ contact_email }}.</p>
+    <p>We’ll be in touch soon. If you have any questions, contact us at {{ contact_email }}.</p>
   </body>
 </html>
