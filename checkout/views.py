@@ -195,14 +195,14 @@ def checkout_success(request, order_number):
 
     send_mail(
         subject,
-        "",  # plain-text body left blank
+        "",
         settings.DEFAULT_FROM_EMAIL,
         [order.email],
         html_message=body,
         fail_silently=False,
     )
 
-    # --- Show success message & clear bag ---
+    # Show success message
     messages.success(
         request,
         (
@@ -212,6 +212,7 @@ def checkout_success(request, order_number):
         ),
     )
 
+    # Clear bag
     if 'bag' in request.session:
         del request.session['bag']
 

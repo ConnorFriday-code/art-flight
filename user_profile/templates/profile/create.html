@@ -10,11 +10,14 @@
 <div class="plate border">
     <form method="POST" action="{% url 'create' %}" enctype="multipart/form-data" id="service-form">
         {% csrf_token %}
+        <!-- Create form -->
         <div class="form-options">
+            <!-- Form title -->
             <div class="form-options">
                 <h2 class="title" id="service-form-title">New Service Creation</h2>
                 <p>Create a new service to show yourself off, {{ request.user.username }}.</p>
             </div>
+            <!-- Add a tag, image, and/or description -->
             <div class="form-options">
                 <label for="tag-input" class="underline">Tag:</label>
                     {{ form.tag }}
@@ -26,6 +29,7 @@
                 <label for="slots" class="underline">Available slots:</label>
                     <input type="number" name="slots" id="slots" min="1" value="{{ form.slots.value|default:1 }}">
             </div>
+            <!-- Add prefrences -->
             <div class="form-options">
                 <h3 class="form-title">Preferences</h3>
                 <label for="dos" class="underline">Willing to do:</label>
@@ -33,6 +37,7 @@
                 <label for="donts" class="underline">Not willing to do:</label>
                 {{form.donts}}
             </div>
+            <!-- Adding pricing option and prices -->
             <div class="form-options">
                 <h3 class="form-title">Prices</h3>
                 <div class="form-options padding">
@@ -55,6 +60,7 @@
 {% endblock %}
 
 {% block postloadjs %}
+<!-- Handles limits for slots available -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const slotsInput = document.getElementById("slots");

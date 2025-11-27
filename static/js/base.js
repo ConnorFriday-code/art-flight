@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    //Animation for message blocks
     const messages = document.querySelectorAll(".message");
     messages.forEach(function (message) {
         setTimeout(function () {

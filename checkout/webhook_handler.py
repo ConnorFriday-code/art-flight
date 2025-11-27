@@ -3,7 +3,6 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 from .models import Order
-from user_profile.models import UserProfile
 import stripe
 
 
@@ -11,11 +10,13 @@ class StripeWH_Handler:
     """Handle Stripe webhooks"""
 
     def __init__(self, request):
+        # Store the original request for later use
         self.request = request
 
     def _send_order_emails(self, order):
-        """Send confirmation email to user and notification to artists"""
-        # Email to user
+        """Send the order confirmation email to the customer"""
+
+        # Prepare email content for the customer
         subject_user = f"Order Confirmation - {order.order_number}"
         body_user = render_to_string(
             "emails/order_confirmation.txt",
@@ -24,6 +25,8 @@ class StripeWH_Handler:
                 "contact_email": settings.DEFAULT_FROM_EMAIL,
             },
         )
+
+        # Send email to the customer's email address
         send_mail(
             subject_user,
             body_user,
@@ -32,45 +35,27 @@ class StripeWH_Handler:
             fail_silently=False,
         )
 
-        # Email to each artist
-        for line_item in order.lineitems.all():
-            artist_email = line_item.artist.email
-            subject_artist = (
-                f"New Commission Order from {order.full_name}"
-            )
-            body_artist = render_to_string(
-                "emails/artist_notification.txt",
-                {
-                    "order": order,
-                    "line_item": line_item,
-                    "contact_email": settings.DEFAULT_FROM_EMAIL,
-                },
-            )
-            send_mail(
-                subject_artist,
-                body_artist,
-                settings.DEFAULT_FROM_EMAIL,
-                [artist_email],
-                fail_silently=False,
-            )
-
     def handle_event(self, event):
-        """Handle a generic/unknown/unexpected webhook event"""
+        """Handle any unexpected webhook events"""
         return HttpResponse(
-            content=(
-                f"Unhandled webhook received: {event['type']}"
-            ),
+            content=f"Unhandled webhook received: {event['type']}",
             status=200,
         )
 
     def handle_payment_intent_succeeded(self, event):
-        """Handle the payment_intent.succeeded webhook from Stripe"""
+        """Handle successful Stripe payments"""
+
+        # Get the payment intent object from Stripe
         intent = event.data.object
         pid = intent.id
 
         try:
+            # Try to find the matching order in the database
             order = Order.objects.get(stripe_pid=pid)
+
+            # If found, send confirmation email
             self._send_order_emails(order)
+
             return HttpResponse(
                 content=(
                     f"Webhook received: {event['type']} | "
@@ -78,7 +63,9 @@ class StripeWH_Handler:
                 ),
                 status=200,
             )
+
         except Order.DoesNotExist:
+            # If no order was found for this payment
             return HttpResponse(
                 content=(
                     f"Webhook received: {event['type']} | "
@@ -88,8 +75,9 @@ class StripeWH_Handler:
             )
 
     def handle_payment_intent_failed(self, event):
-        """Handle the payment_intent.failed webhook from Stripe"""
+        """Handle failed Stripe payments"""
         return HttpResponse(
             content=f"Webhook received: {event['type']}",
             status=200,
         )
+    
