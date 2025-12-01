@@ -8,12 +8,16 @@
 
 {% block content %}
 <div class="plate border centre">
+    <!-- Page title -->
     <h2 id="order-title">Your Orders</h2>
+    <!-- List all orders -->
     <ul id="order-list">
         {% for order in orders %}
             <li class="order-item border">
                 <a href="{% url 'order_detail' order.order_number %}">
+                    <!-- Order date -->
                     <p>Date: {{ order.date|date:"Y-m-d" }}</p>
+                    <!-- Order number -->
                     <p>Order number: #{{ order.order_number }}</p>
                 </a>
             </li>

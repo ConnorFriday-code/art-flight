@@ -70,6 +70,7 @@ def order_list(request):
     return render(request, "profile/order_list.html", {"orders": orders})
 
 
+# Get past-order details
 @login_required
 def order_detail(request, order_number):
     """Display the details of a specific order"""

@@ -7,6 +7,7 @@ from django.dispatch import receiver
 from django_countries.fields import CountryField
 
 
+# Artist post model
 class Artist(models.Model):
     sku = models.CharField(
         max_length=36,
@@ -43,6 +44,7 @@ class Artist(models.Model):
         return self.artist_name
 
 
+# Saves billing address info to user profile
 class UserProfile(models.Model):
     """
     A user profile model for maintaining default

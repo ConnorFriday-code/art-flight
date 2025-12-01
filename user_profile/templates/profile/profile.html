@@ -9,15 +9,18 @@
 
 <div id="profile-options" class="plate centre border">
     <div id="profile-banner">
+        <!-- User's name as page title -->
         <h1 class="title">{{ request.user.username }}'s Profile Page</h1>
     </div>
 
     <div>
+        <!-- Toggleable dropdown to manage services -->
         <h2 class="title toggle-title title-style">
             Manage services <span class="arrow">▼</span>
         </h2>
         <ul class="no-style toggle-content">
             <li>
+                <!-- Create a new service/post -->
                 <div id="create-service">
                     <a href="{% url 'create' %}"><h3 class="sub-title title-style">Create a service</h3></a>
                 </div>
@@ -25,12 +28,15 @@
             <li>Or</li>
             <li>
                 <div>
+                    <!-- Toggleable dropdown to edit services -->
                     <h3 id="edit-div-title" class="sub-title title-style">Edit a service <span class="arrow">▼</span></h3>
                     <div id="edit-div" class="service-card-cont">
+                        <!-- List all editable services -->
                         {% if user.artists.all %}
                                 {% for artist in user.artists.all %}
                                 <ul class="no-style service-card border">
                                     <li>
+                                        <!-- Link to edit page -->
                                         <a href="{% url 'edit' artist.pk %}">
                                             <div>
                                                 <h4 class="service-card-subtitle">Service description:</h4>
@@ -49,6 +55,7 @@
                                 </ul>
                                 {% endfor %}
                         {% else %}
+                        <!-- Warning no services found -->
                         <ul class="no-style centre">
                             <li class="li-100-width">No services found to edit!</li>
                             <li class="li-100-width">Do you want to <a href="{% url 'create' %}">create one?</a></li>
@@ -59,9 +66,11 @@
             </li>
             <li>
                 <div>
+                    <!-- Toggleable dropdown to delete services -->
                     <h3 id="delete-div-title" class="sub-title title-style">Delete a service <span class="arrow">▼</span></h3>
                     <div id="delete-div">
                         <ul class="no-style service-card-cont">
+                        <!-- List all delete-able posts-services -->
                         {% if user.artists.all %}
                             {% for artist in user.artists.all %}
                                 <li class="service-card border">
@@ -85,6 +94,7 @@
                                 </li>
                             {% endfor %}
                         {% else %}
+                            <!-- Warning no services found -->
                             <li class="li-100-width">No services found to delete!</li>
                             <li class="li-100-width">Do you want to <a href="{% url 'create' %}">create one?</a></li>
                         {% endif %}
@@ -96,6 +106,7 @@
     </div>
 
     <div>
+        <!-- View past orders -->
         <a href="{% url 'order_list' %}">
             <h2 class="title title-style">View past orders</h2>
         </a>
@@ -104,6 +115,7 @@
 
 {% endblock %}
 
+<!-- Toggleable dropdown js -->
 {% block postloadjs %}
 <script>
     document.getElementById("edit-div-title").addEventListener("click", function () {

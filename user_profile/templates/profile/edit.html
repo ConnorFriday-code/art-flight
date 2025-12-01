@@ -10,10 +10,13 @@
 <div class="plate border">
     <form method="POST" action="" enctype="multipart/form-data" id="service-form">
         {% csrf_token %}
+        <!-- Load form -->
         <div class="form-options">
+            <!-- Form title -->
             <div class="form-options">
                 <h2 class="title" id="service-form-title">Edit Service: {{ artist.artist_name }}</h2>
             </div>
+            <!-- Edit a tag, image, and/or description -->
             <div class="form-options">
                 <label for="tag-input" class="underline">Tag:</label>
                 {{ form.tag }}
@@ -25,6 +28,7 @@
                 <label for="slots" class="underline">Available slots:</label>
                 <input type="number" name="slots" id="slots" min="1" value="{{ form.slots.value|default:1 }}">
             </div>
+            <!-- Edit prefrences -->
             <div class="form-options">
                 <h3 class="form-title">Preferences</h3>
                 <label for="dos" class="underline">Willing to do:</label>
@@ -32,6 +36,7 @@
                 <label for="donts" class="underline">Not willing to do:</label>
                 {{ form.donts }}
             </div>
+            <!-- Edit pricing option and prices -->
             <div class="form-options">
                 <h3 class="form-title">Prices</h3>
                 <div class="form-options padding">
@@ -53,6 +58,7 @@
 
 {% endblock %}
 
+<!-- Handles limits for slots available -->
 {% block postloadjs %}
 <script>
     document.addEventListener("DOMContentLoaded", function () {
