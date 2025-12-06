@@ -9,30 +9,43 @@ from django_countries.fields import CountryField
 
 # Artist post model
 class Artist(models.Model):
+    # Random id/sku
     sku = models.CharField(
         max_length=36,
         unique=True,
         default=uuid.uuid4,
     )
+    # Artist name
     artist_name = models.CharField(max_length=255, blank=True)
+    # Email
     email = models.EmailField(blank=True)
+    # Description text field
     description = models.TextField(blank=True)
+    # Dos text field
     dos = models.TextField(blank=True)
+    # Don'ts text field
     donts = models.TextField(blank=True)
+    # Image field (can be blank)
     image = models.ImageField(
         upload_to="artist_images/",
         blank=True,
         null=True,
     )
+    # Price field
     price = models.JSONField(default=dict, null=False, blank=False)
+    # How many commission slots the artist wants available
     slots = models.IntegerField(default=0)
+    # What the user want to tag their art as
+    # This works with the nav bar at the top for quick tag/style finding
     tag = models.CharField(max_length=50, blank=True)
+    # On artist being deleted, delte all posts as well
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         related_name="artists",
     )
 
+    # Save checking username
     def save(self, *args, **kwargs):
         if not self.artist_name:
             self.artist_name = self.user.username
@@ -91,6 +104,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 
+# Used to save or create user changes
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """
