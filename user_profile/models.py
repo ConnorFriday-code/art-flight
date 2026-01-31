@@ -39,20 +39,22 @@ class Artist(models.Model):
 
     # What the user want to tag their art as
     # This works with the nav bar at the top for quick tag/style finding
-    class ArtTag(models.TextChoices):
-        SKETCH = 'sketch', 'Sketch'
-        FLAT = 'flat', 'Flat'
-        SHADED = 'shaded', 'Shaded'
-        DRAWING = 'drawing', 'Drawing'
-        PAINTING = 'painting', 'Painting'
-        OIL = 'oil', 'Oil'
-        CD = 'cd', 'CD'
-        PINS = 'pins', 'Pins'
-        MISC = 'misc', 'Miscellaneous'
+
+    ART_TAG_CHOICES = [
+        ('sketch', 'Sketch'),
+        ('flat', 'Flat'),
+        ('shaded', 'Shaded'),
+        ('drawing', 'Drawing'),
+        ('painting', 'Painting'),
+        ('oil', 'Oil'),
+        ('cd', 'CD'),
+        ('pins', 'Pins'),
+        ('misc', 'Miscellaneous'),
+    ]
 
     tag = models.CharField(
         max_length=20,
-        choices=ArtTag.choices,
+        choices=ART_TAG_CHOICES,
         blank=True
     )
 
