@@ -35,9 +35,28 @@ class Artist(models.Model):
     price = models.JSONField(default=dict, null=False, blank=False)
     # How many commission slots the artist wants available
     slots = models.IntegerField(default=0)
+
+
     # What the user want to tag their art as
     # This works with the nav bar at the top for quick tag/style finding
-    tag = models.CharField(max_length=50, blank=True)
+    class ArtTag(models.TextChoices):
+        SKETCH = 'sketch', 'Sketch'
+        FLAT = 'flat', 'Flat'
+        SHADED = 'shaded', 'Shaded'
+        DRAWING = 'drawing', 'Drawing'
+        PAINTING = 'painting', 'Painting'
+        OIL = 'oil', 'Oil'
+        CD = 'cd', 'CD'
+        PINS = 'pins', 'Pins'
+        MISC = 'misc', 'Miscellaneous'
+
+    tag = models.CharField(
+        max_length=20,
+        choices=ArtTag.choices,
+        blank=True
+    )
+
+
     # On artist being deleted, delte all posts as well
     user = models.ForeignKey(
         User,
