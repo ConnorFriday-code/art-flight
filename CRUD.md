@@ -10,4 +10,4 @@
 |                    | Basket quantity     | ![image](readme_assets/crud/u-basket-items.png) | Users can add or remove items from their basket        |
 |                    | Basket item options | ![image](readme_assets/crud/u-bag-item.png) | Users can edit the price options and details for items in their basket |
 | **Delete**         | Own artist posts    | ![image](readme_assets/crud/d-artist-post.png) | Users can delete their own artist posts               |
-|                    | Basket list items   | ![image]() | Users can remove items from their basket       |
+|                    | Basket list items   | ![image](readme_assets/crud/d-basket-item.png) | Users can remove items from their basket with the delete button on the right     |

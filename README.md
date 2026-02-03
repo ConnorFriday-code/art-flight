@@ -90,9 +90,17 @@ List of all pages needed:
 
 ![Database logic chart](readme_assets/wireframe_and_logic/database_logic.png)
 
+#### Database and Model Design
+
+Art Flight uses Django’s built-in ORM to manage the database and define how data is stored and related. The main model is the "Artist" model, which represents an artist post created by a user. Each "Artist" is linked to Django’s User model using a foreign key, meaning one user can create many artist posts, but each artist post belongs to only one user (one-to-many relationship). 
+
+A separate UserProfile model is linked to the User model using a one-to-one relationship to store additional user information such as address details. Artist posts can be categorised using tags, which are stored in a separate Tag model to keep the data organised and reusable. This structure keeps the database clean, avoids duplicated data, and makes it easier to filter and manage artist posts across the site.
+
 ## Bugs and testing
 
 ### Manual vs automated testing
+
+During development, I mainly used manual testing to check that the website functioned correctly from a user’s perspective. This included testing forms, navigation, and user features by interacting with the site in the browser. I did not implement any automated testing for this project due to my time limitations. In future development, automated testing could be added to help catch errors earlier and ensure core features continue to work as the project grows.
 
 ### Bug solving
 
@@ -248,6 +256,10 @@ To find all lighthouse reports for the website, follow this [link](lighthouse.md
 * [AWS](https://eu-north-1.console.aws.amazon.com/console/home?region=eu-north-1#) for bucket and static file handling
 * [Stripe](https://stripe.com/gb) to implement and test payment processing
 * [ChatGPT](https://chatgpt.com) to generate the site logo copyright-free
+* [Validator.w3](https://validator.w3.org/nu/) to validate my HTML code
+* [Jigsaw.w3](https://jigsaw.w3.org/css-validator/) to validate my CSS
+* [Pep8ci](https://pep8ci.herokuapp.com) to validate my Python
+
 
 ### Thanks and acknowledgements
 Thank you to Code Institute for providing me with the tutorials I need to make these websites.
