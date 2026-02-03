@@ -50,7 +50,7 @@ class CreateService(forms.ModelForm):
         widget=forms.Textarea(
             attrs={
                 "rows": 5,
-                "placeholder": "Enter price keys (one per line)",
+                "placeholder": "Enter pricing option (one per line). Example: Full body",
             }
         ),
         required=False,
@@ -59,7 +59,7 @@ class CreateService(forms.ModelForm):
         widget=forms.Textarea(
             attrs={
                 "rows": 5,
-                "placeholder": "Enter corresponding prices (one per line)",
+                "placeholder": "Enter pricing option's corresponding prices (one per line). Example: 25.50",
             }
         ),
         required=False,
