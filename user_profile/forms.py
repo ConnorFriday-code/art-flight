@@ -65,17 +65,16 @@ class CreateService(forms.ModelForm):
         required=False,
     )
 
-    tag = forms.CharField(
-        max_length=50,
-        widget=forms.TextInput(
+    tag = forms.ChoiceField(
+        choices=Artist.ART_TAG_CHOICES,  # Use the model’s choices
+        required=False,  # matches blank=True
+        label="Tag",
+        widget=forms.Select(
             attrs={
                 "class": "form-control",
                 "id": "tag-input",
-                "placeholder": "Type a tag",
-                "autocomplete": "off",
             }
         ),
-        label="Tag",
     )
 
     class Meta:
