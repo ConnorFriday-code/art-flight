@@ -252,16 +252,16 @@ body{
     width: 50%;
 }
 
-#footer-links{
+.footer-links-actual{
     list-style: none;
     color: #e9e9e9;
 }
 
-#footer-links:active{
+.footer-links-actual:active{
     color: #e9e9e9;
 }
 
-#footer-links:visited{
+.footer-links-actual:visited{
     color: #e9e9e9;
 }
 
